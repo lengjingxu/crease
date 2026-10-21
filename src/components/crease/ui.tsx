@@ -141,6 +141,37 @@ export function DataRow({
   );
 }
 
+export function Switch({
+  on,
+  onToggle,
+  label,
+}: {
+  on: boolean;
+  onToggle: () => void;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={label}
+      onClick={onToggle}
+      className={cn(
+        "relative h-7 w-12 shrink-0 rounded-full border border-line transition-transform active:translate-y-px",
+        on ? "bg-ink" : "bg-paper-2",
+      )}
+    >
+      <span
+        className={cn(
+          "absolute top-0.5 size-5 rounded-full bg-paper shadow-[0_1px_2px_rgba(0,0,0,0.2)] transition-[left]",
+          on ? "left-6" : "left-0.5",
+        )}
+      />
+    </button>
+  );
+}
+
 export function FigurePlate({ kind }: { kind: "field" | "mass" | "cut" }) {
   return (
     <div className="relative h-full w-full bg-paper" aria-hidden="true">
