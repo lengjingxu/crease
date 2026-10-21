@@ -6,7 +6,7 @@
 
 - 主题变量：[src/theme/crease.css](src/theme/crease.css)，按 shadcn 的名字写。`primary` 是黑。`signal` 是红，只用于 1px 线和点。
 - 组件：[src/components/crease/ui.tsx](src/components/crease/ui.tsx)：`Button`、`Field`、`TextArea`、`Card`、`FigureCard`、`Stat`、`DataRow`、`Switch`、`Empty`、`PageHeader`。
-- 页面模板在 [src/components/crease/templates.tsx](src/components/crease/templates.tsx) 和 [src/components/crease/app-pages.tsx](src/components/crease/app-pages.tsx)。
+- 页面模板在 [src/components/crease/templates.tsx](src/components/crease/templates.tsx)、[src/components/crease/app-pages.tsx](src/components/crease/app-pages.tsx) 和 [src/components/crease/pages](src/components/crease/pages)。
 
 覆盖的页面：组件、文章、表单、图库、管理首页、订单、用户、登录、手机订单、商品、结算、设置、通知、来源。
 
