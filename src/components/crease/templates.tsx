@@ -1,16 +1,8 @@
 import { useState } from "react";
-import {
-  AdminPage,
-  CheckoutPage,
-  InboxPage,
-  LoginPage,
-  MobileOrdersPage,
-  OrdersPage,
-  ProductPage,
-  SettingsPage,
-  SourcesPage,
-  UserPage,
-} from "@/components/crease/app-pages";
+import { AdminPage, LoginPage, MobileOrdersPage, OrdersPage, ProductPage, SourcesPage, UserPage } from "@/components/crease/app-pages";
+import { CheckoutPage } from "@/components/crease/pages/checkout";
+import { InboxPage } from "@/components/crease/pages/inbox";
+import { SettingsPage } from "@/components/crease/pages/settings";
 import { Button, Card, Empty, Field, FigureCard, PageHeader, TextArea } from "@/components/crease/ui";
 
 const PAGES = [
