@@ -1,37 +1,48 @@
-# CREASE
+# CREASE / Reference studies
 
-白底、磨砂但仍然很黑的亚克力、红只做细线。这是一套可复用的页面设计，不是某个产品的皮肤。
+白色场域、近黑亚克力、玻璃叠层与红色细线。以三个 Dribbble 稿件为结构基准，保留卡片组合、比例、信息层级与图表细节，转译为 CREASE 原主题配色。界面导航、按钮、说明与弹窗统一使用中文。
 
-## 用什么
+## 运行
 
-- 主题变量：[src/theme/crease.css](src/theme/crease.css)，按 shadcn 的名字写。`primary` 是黑。`signal` 是红，只用于 1px 线和点。
-- 组件：[src/components/crease/ui.tsx](src/components/crease/ui.tsx)：`Button`、`Field`、`TextArea`、`Card`、`FigureCard`、`Stat`、`DataRow`、`Switch`、`Empty`、`PageHeader`。
-- 页面模板在 [src/components/crease/templates.tsx](src/components/crease/templates.tsx)、[src/components/crease/app-pages.tsx](src/components/crease/app-pages.tsx) 和 [src/components/crease/pages](src/components/crease/pages)。
+Node.js 22+。
 
-覆盖的页面：组件、文章、表单、图库、管理首页、订单、用户、登录、手机订单、商品、结算、设置、通知、来源。
+~~~sh
+npm ci
+npm run dev
+~~~
 
-## 灵感来源
+打开终端输出的本机地址。生产检查：
 
-视觉方法来自《镜之边缘》，不是素材引用。本仓库的标志、[public/sources/red-line.svg](public/sources/red-line.svg) 和分享图都是原创。没有游戏截图、角色、标志或官方宣传图。
+~~~sh
+npm run build
+npm run preview
+~~~
 
-引用图：
+## 参考页
 
-![红是路，不是墙](public/sources/red-line.svg)
+- /#finance — Financial Dashboard：银行卡与费用嵌套、收支模块、点阵、增长环、年度套叠圆、三张活动卡、股票折线与评价。
+- /#travel — TripAI：风车场景、磨砂导航、助手、天气/预算/繁忙度卡、地点示意图。源稿仅有倾斜静帧；被裁切的区域不声称精确还原。
+- /#people — HR：胶囊导航、占比分段、四栏卡片、人物、细柱图、刻度计时器、折叠设备、日历与跨行叠层任务卡。
+- /#system — 主题变量、材质、字体与基础组件。
+- /#original — 完整保留原主题的总览、日常、亮点、模板与规范。
 
-这张图按同一方法重画：白底、一块仍很黑的亚克力、一条红线、一个红点。它说明方法，不代替游戏画面。
+所有业务数据为演示。周期/年份切换、搜索、评价、验证状态、计时、任务复选框、邀请表单、折叠项、月份、旅行分类/收藏/地图缩放均在本地运行；刷新或切换参考页后恢复初值。助手是明确的本地示例回复，不调用 AI 或其他外部服务。没有真实支付、邮件或预订。
 
-### Mirror's Edge（2008）
+## 实现
 
-- 开发：DICE。发行：Electronic Arts。
-- 美术指导：Johannes Söderqvist。
-- 取用的方法：环境保持白和干净；红用来标路，不铺成界面。CREASE 把红再收成细线、红点和切口，按钮保持黑色。
-- 出处：[IGN，Artist in Residence: Mirror's Edge](https://www.ign.com/articles/2008/11/13/artist-in-residence-mirrors-edge)。Söderqvist 说明红色是 runner vision，白几何和冷色天空把暖色衬出来。
+React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 shadcn/ui（Radix）。Outfit / Syne 字体本地打包。
 
-### Mirror's Edge Catalyst（2016）
+- src/theme/crease.css：保留原来的 shadcn 主题变量；主操作是近黑，红色 --signal 只用于路径、细线与点。
+- src/theme/references.css：三个参考页的结构、材质和响应式布局。
+- src/theme/studio.css：主题规范与参考页导航。
+- src/components/studio/references.tsx：三个独立页面及交互。
+- src/components/ui/：shadcn 基础组件。
+- [design/DIRECTION.md](design/DIRECTION.md)：原图出处、逐图分析、结构对应、取舍及素材限制。
 
-- 开发：DICE。发行：Electronic Arts。
-- 美术指导：Jhony Ljungstedt。
-- 取用的方法：城市被收成必要的白色体块，细节能减则减。
-- 出处：[80 Level，EA DICE 谈 Glass 城](https://80.lv/articles/ea-dices-artists-talk-building-the-world-of-mirrors-edge-catalyst)。
+## 来源与素材
 
-游戏名称和上述文章标题归原权利人。这里只链到公开访谈，不转载游戏画面。
+原图保存在 design/references/，来自用户指定的公开 Dribbble 稿件，仅作设计研究。HR 人像与 TripAI 风车/缩略图从这些图中裁切提取，保存在 public/reference-details/；原稿、照片与品牌的权利归各自权利人，不将其声明为原创或可自由商用素材。新页面中的示意地图、图表与 CSS 材质由代码绘制。
+
+原主题的视觉方法来自 Mirror’s Edge，而非游戏素材：白色环境、必要体块、红色引导。原主题标志和 public/sources/red-line.svg 保留；没有引入游戏截图、角色或官方宣传图。
+
+原主题来源：https://bloom-gem-crane-flame.grok.me
