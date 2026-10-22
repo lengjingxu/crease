@@ -14,7 +14,7 @@ const contours: Record<CompanionState, string> = {
  sleeping: "M120 113 C155 111 188 130 190 151 C192 173 155 186 120 185 C85 187 47 174 50 152 C52 131 85 112 120 113Z",
 };
 
-/** Original, faceless soft body. Pausing freezes the current deformation. */
+/** Original soft body with two minimal eye marks. Pausing freezes the current deformation. */
 export const Companion = memo(function Companion({ state = "idle", animated = false, className, label }: { state?: CompanionState; animated?: boolean; className?: string; label?: string }) {
  const id=useId().replace(/:/g, "");
  return <svg viewBox="0 0 240 240" role="img" aria-label={label || "折光 · " + companionStates[state]} className={cn("crease-companion h-auto w-40 max-w-full",className)} data-state={state} data-animated={animated}>
@@ -27,6 +27,11 @@ export const Companion = memo(function Companion({ state = "idle", animated = fa
   <ellipse className="slime-shadow" cx="120" cy="205" rx="64" ry="12" fill={"url(#"+id+"shadow)"} />
   <g key={state} className="slime-body">
    <path className="slime-contour" d={contours[state]} fill={"url(#"+id+(state==="error"?"alert":"body")+")"} stroke={"url(#"+id+"edge)"} strokeWidth="1.2" />
+   <g className="slime-gaze" fill="none" stroke="#16252e" strokeWidth="5" strokeLinecap="round" aria-hidden="true">
+    <g className="slime-eyes">
+     {state === "sleeping" ? <path d="M103 153h8m19 0h8" /> : state === "success" ? <path d="M102 123q5-7 10 0m18 0q5-7 10 0" /> : state === "error" ? <path d="m104 119 5 4m23 0 5-4" /> : <path d={state === "thinking" ? "M107 118v3m28-1v5" : "M107 118v5m28-5v5"} />}
+    </g>
+   </g>
   </g>
  </svg>;
 });
