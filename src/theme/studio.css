@@ -93,7 +93,7 @@
   font-weight: 500;
 }
 .dark-glass {
-  background: linear-gradient(125deg, #161617f2, #050506f5 48%, #000000fa);
+  background: var(--crease-ink);
   border: 1px solid #5c5d6155;
   color: #fff;
   box-shadow:

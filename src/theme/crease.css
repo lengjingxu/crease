@@ -1,77 +1,93 @@
-/* CREASE theme for shadcn / Tailwind.
-   Red is --signal: hairlines and dots only.
-   --primary and --destructive stay ink, so a filled button never turns red. */
+/* CREASE 1.0 — portable Tailwind CSS v4 + shadcn theme. See /design.md. */
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --radius: 0.5rem;
+  color-scheme: light;
+  --radius: 0.75rem;
   --background: #ffffff;
   --foreground: #0a0a0c;
   --card: #ffffff;
   --card-foreground: #0a0a0c;
   --popover: #ffffff;
   --popover-foreground: #0a0a0c;
-  --primary: #0a0a0c;
-  --primary-foreground: #ffffff;
-  --secondary: #f2f2f2;
-  --secondary-foreground: #0a0a0c;
-  --muted: #f2f2f2;
-  --muted-foreground: #5c5a58;
-  --accent: #f2f2f2;
-  --accent-foreground: #0a0a0c;
-  --destructive: #0a0a0c;
-  --destructive-foreground: #ffffff;
-  --border: #e8e8e8;
-  --input: #e8e8e8;
-  --ring: #0a0a0c;
   --signal: #d31218;
-  --chart-1: #0a0a0c;
-  --chart-2: #5c5a58;
-  --chart-3: #d31218;
-  --chart-4: #f2f2f2;
-  --chart-5: #e8e8e8;
+  --signal-foreground: #ffffff;
+  --primary: var(--signal);
+  --primary-foreground: var(--signal-foreground);
+  --secondary: #f0f3f5;
+  --secondary-foreground: #0a0a0c;
+  --muted: #f0f3f5;
+  --muted-foreground: #555b63;
+  --accent: #fceced;
+  --accent-foreground: #a00d12;
+  --destructive: #b60f16;
+  --destructive-foreground: #ffffff;
+  --border: #dce1e6;
+  --input: #89919b;
+  --ring: var(--signal);
+  --chart-1: var(--signal);
+  --chart-2: #0a0a0c;
+  --chart-3: #555b63;
+  --chart-4: #767d86;
+  --chart-5: #b60f16;
   --sidebar: #ffffff;
   --sidebar-foreground: #0a0a0c;
-  --sidebar-primary: #0a0a0c;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f2f2f2;
-  --sidebar-accent-foreground: #0a0a0c;
-  --sidebar-border: #e8e8e8;
-  --sidebar-ring: #0a0a0c;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  /* Environment lives below surfaces. Ice is illumination, never body text. */
+  --crease-ambient: radial-gradient(ellipse at 88% 28%, #9ddcff70, transparent 58%), radial-gradient(ellipse at 38% 90%, #c0eaff45, transparent 48%);
+  --crease-reflection: radial-gradient(ellipse at 8% 90%, #d3121810, transparent 34%);
+  --crease-glass: linear-gradient(135deg, #ffffffbd, #ffffff66);
+  --crease-glass-border: #ffffffde;
+  --crease-glass-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #ffffff80, 0 8px 28px #08081009, 0 1px 3px #08081008;
+  --crease-ink: linear-gradient(135deg, #151516f5, #030304fa 65%);
+  --crease-ink-shadow: inset 0 1px 0 #ffffff28, inset 0 -1px 0 #00000090, 0 12px 25px #10111a12;
+  --crease-blur: 22px;
 }
 
 .dark {
-  --background: #0a0a0c;
-  --foreground: #ffffff;
-  --card: rgba(10, 10, 12, 0.9);
-  --card-foreground: #ffffff;
-  --popover: rgba(10, 10, 12, 0.92);
-  --popover-foreground: #ffffff;
-  --primary: #ffffff;
-  --primary-foreground: #0a0a0c;
-  --secondary: rgba(255, 255, 255, 0.08);
-  --secondary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(255, 255, 255, 0.68);
-  --accent: rgba(255, 255, 255, 0.08);
-  --accent-foreground: #ffffff;
-  --destructive: #ffffff;
+  color-scheme: dark;
+  --background: #08090b;
+  --foreground: #f7f8fa;
+  --card: #111316;
+  --card-foreground: #f7f8fa;
+  --popover: #111316;
+  --popover-foreground: #f7f8fa;
+  --secondary: #20242a;
+  --secondary-foreground: #f7f8fa;
+  --muted: #20242a;
+  --muted-foreground: #c5cad2;
+  --accent: #361115;
+  --accent-foreground: #ffb5b8;
+  --destructive: #ff777d;
   --destructive-foreground: #0a0a0c;
-  --border: rgba(255, 255, 255, 0.16);
-  --input: rgba(255, 255, 255, 0.16);
-  --ring: #ffffff;
-  --sidebar: #0a0a0c;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #0a0a0c;
-  --sidebar-accent: rgba(255, 255, 255, 0.08);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.16);
-  --sidebar-ring: #ffffff;
+  --border: #373e47;
+  --input: #767f8b;
+  --ring: #ff777d;
+  --chart-2: #f7f8fa;
+  --chart-3: #c5cad2;
+  --chart-4: #8993a1;
+  --chart-5: #ffb5b8;
+  --sidebar: #111316;
+  --sidebar-foreground: #f7f8fa;
+  --crease-ambient: radial-gradient(ellipse at 88% 28%, #72c9ff22, transparent 58%), radial-gradient(ellipse at 38% 90%, #9ddcff0d, transparent 48%);
+  --crease-reflection: radial-gradient(ellipse at 8% 90%, #d3121824, transparent 34%);
+  --crease-glass: linear-gradient(135deg, #171b21bd, #10141980);
+  --crease-glass-border: #ffffff26;
+  --crease-glass-shadow: inset 0 1px 0 #ffffff20, inset 0 -1px 0 #ffffff08, 0 8px 28px #00000030;
 }
 
 @theme inline {
+  --font-sans: "Outfit", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -91,6 +107,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -104,4 +122,46 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-3xl: calc(var(--radius) + 28px);
 }
+
+@layer base {
+  * { border-color: var(--border); }
+  body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); font-size: 1rem; line-height: 1.6; }
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+  input::placeholder, textarea::placeholder { color: var(--muted-foreground); opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@utility crease-canvas {
+  background: var(--crease-reflection), var(--crease-ambient), var(--background);
+  color: var(--foreground);
+}
+@utility crease-glass {
+  background: var(--crease-glass);
+  color: var(--foreground);
+  border: 1px solid var(--crease-glass-border);
+  box-shadow: var(--crease-glass-shadow);
+  backdrop-filter: blur(var(--crease-blur)) saturate(1.25);
+}
+@utility crease-ink {
+  --foreground: #ffffff;
+  --muted-foreground: #c5cad2;
+  --accent: #361115;
+  --accent-foreground: #ffb5b8;
+  background: var(--crease-ink);
+  color: var(--foreground);
+  border: 1px solid #ffffff26;
+  box-shadow: var(--crease-ink-shadow);
+  backdrop-filter: blur(24px) saturate(1.2);
+}
+@utility crease-body { font-size: 1rem; line-height: 1.7; }
+@utility crease-caption { font-size: 0.75rem; line-height: 1.5; color: var(--muted-foreground); }
