@@ -197,7 +197,7 @@ function DesignSystem() {
         title="清晰，自成风格"
         description="白是场域，黑是重量，红是方向。让材质服务于信息。"
       >
-        <Button asChild variant="outline"><a href="/examples/theme.html">可迁移示例</a></Button>
+        <Button asChild variant="outline"><a href="/examples/library.html">组件与模板</a></Button>
         <Button variant="outline" onClick={copy}>
           {copied ? <Check size={15} /> : <Copy size={15} />}{" "}
           {copied ? "已复制完整主题" : "复制完整主题"}

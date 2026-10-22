@@ -154,6 +154,7 @@
 }
 @utility crease-ink {
   --foreground: #ffffff;
+  --card-foreground: #ffffff;
   --muted-foreground: #c5cad2;
   --accent: #361115;
   --accent-foreground: #ffb5b8;
