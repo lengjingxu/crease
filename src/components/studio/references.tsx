@@ -1485,7 +1485,7 @@ export function TravelReference() {
                       strokeWidth="1.5"
                       strokeDasharray="4 4"
                     />
-                    <g fontFamily="sans-serif" fontSize="10" fill="#92999e">
+                    <g fontFamily="sans-serif" fontSize="12" fill="#555b63">
                       <text x="424" y="39">
                         伊亚
                       </text>
@@ -1504,7 +1504,7 @@ export function TravelReference() {
                       <text x="670" y="244">
                         卡马里
                       </text>
-                      <text x="212" y="171" fill="#acb4b9">
+                      <text x="212" y="171" fill="#555b63">
                         爱琴海
                       </text>
                     </g>

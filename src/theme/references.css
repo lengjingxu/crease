@@ -19,7 +19,7 @@
   padding: 10px 38px 24px;
 }
 .reference-studio .site-footer > span {
-  color: #777b81;
+  color: #555b63;
 }
 .study-toolbar {
   height: 66px;
@@ -44,9 +44,9 @@
   width: 23px;
 }
 .study-brand > span {
-  color: #999da3;
+  color: #555b63;
   font-weight: 400;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1.4px;
   margin-left: 7px;
 }
@@ -60,14 +60,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
-  color: #8d9096;
+  font-size: 14px;
+  color: #555b63;
   height: 100%;
   position: relative;
 }
 .study-toolbar nav a > span {
-  font-size: 8px;
-  color: #a5a8ae;
+  font-size: 12px;
+  color: #555b63;
 }
 .study-toolbar nav a[aria-current="page"] {
   color: var(--signal);
@@ -82,7 +82,7 @@
   bottom: 15px;
 }
 .study-toolbar > button {
-  color: #83878d;
+  color: #555b63;
 }
 .reference-canvas {
   border-radius: 40px;
@@ -95,8 +95,8 @@
   justify-content: space-between;
   gap: 12px;
   padding: 19px 4px 16px;
-  font-size: 9px;
-  color: #7d8188;
+  font-size: 12px;
+  color: #555b63;
   letter-spacing: 0.3px;
 }
 .reference-credit > span:first-child {
@@ -158,7 +158,7 @@
   border: 1px solid #ebebec;
   border-radius: 30px;
   padding: 6px 13px;
-  font-size: 10px;
+  font-size: 12px;
   color: #2a2b2d;
   white-space: nowrap;
   font-family: inherit;
@@ -217,15 +217,15 @@
 .ref-form {
   display: grid;
   gap: 18px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ref-form label {
   display: grid;
   gap: 7px;
 }
 .ref-form p {
-  font-size: 12px;
-  color: #777;
+  font-size: 14px;
+  color: #555b63;
 }
 .ref-dialog-info {
   display: grid;
@@ -237,13 +237,13 @@
   justify-self: start;
 }
 .ref-empty {
-  font-size: 10px;
-  color: #8e9298;
+  font-size: 12px;
+  color: #555b63;
   padding: 15px 0;
 }
 .reference-canvas [data-slot="button"] {
   border-radius: 30px;
-  font-size: 10px;
+  font-size: 12px;
   height: 34px;
   font-weight: 400;
 }
@@ -258,7 +258,7 @@
   background: linear-gradient(135deg, #fff, #c4c6c9);
   border: 1px solid #fff;
   color: #383a3f;
-  font-size: 13px;
+  font-size: 14px;
 }
 /* FINANCE: wide welcome field, nested account modules, three-scale data tiles. */
 .finance-header {
@@ -306,7 +306,7 @@
 }
 .finance-identity h1 small {
   display: block;
-  color: #a3a3a6;
+  color: #555b63;
   font-weight: 400;
   font-size: 17px;
   margin-top: 3px;
@@ -315,7 +315,7 @@
   display: flex;
   align-items: center;
   gap: 13px;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: -0.2px;
 }
 .finance-user > .ref-round {
@@ -327,7 +327,7 @@
 }
 .finance-user small {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   margin-top: 3px;
 }
@@ -335,8 +335,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-size: 11px;
-  color: #a2a3a6;
+  font-size: 14px;
+  color: #555b63;
   margin-left: 15px;
 }
 .finance-search .round-icon {
@@ -385,7 +385,7 @@
 }
 .finance-date [data-slot="button"] {
   height: 47px;
-  font-size: 11px;
+  font-size: 14px;
   gap: 30px;
   padding: 0 20px;
   background: var(--ref-ink);
@@ -416,7 +416,7 @@
   display: block;
   font-size: 32px;
   font-weight: 400;
-  color: #bfc0c2;
+  color: #555b63;
   border-left: 1px solid #313235;
   padding-left: 4px;
   line-height: 1;
@@ -463,7 +463,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 21px 0 14px;
-  color: #7a7b7e;
+  color: #555b63;
 }
 .finance-rail > div > button {
   color: #1a1b1e;
@@ -494,8 +494,8 @@
   font-size: 14px;
 }
 .bank-card-top > p {
-  font-size: 10px;
-  color: #a7a8aa;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 27px;
 }
 .bank-number {
@@ -512,7 +512,7 @@
 .bank-actions button {
   flex: 1;
   height: 28px !important;
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
 .bank-actions button:last-child {
   background: #f7f7f7;
@@ -525,8 +525,8 @@
   gap: 8px;
 }
 .bank-fee small {
-  font-size: 10px;
-  color: #9a9b9f;
+  font-size: 12px;
+  color: #555b63;
   display: block;
   margin-bottom: 4px;
 }
@@ -541,9 +541,9 @@
   align-items: center;
   gap: 6px;
   text-align: left;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.1;
-  color: #68696e;
+  color: #555b63;
 }
 .bank-fee > button > svg,
 .income-value > button > svg {
@@ -570,8 +570,8 @@
 }
 .income-half > small {
   display: block;
-  font-size: 10px;
-  color: #a3a4a7;
+  font-size: 12px;
+  color: #555b63;
   margin: 17px 0 4px;
 }
 .income-value {
@@ -587,7 +587,7 @@
   letter-spacing: -0.5px;
 }
 .income-value > button {
-  font-size: 9px;
+  font-size: 12px;
 }
 .finance-micro {
   display: flex;
@@ -605,7 +605,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: 12px;
   backdrop-filter: blur(22px) saturate(1.25);
   box-shadow: var(--ref-glass-shadow);
 }
@@ -645,7 +645,7 @@
   line-height: 1;
 }
 .ref-ring small {
-  font-size: 8px;
+  font-size: 12px;
   opacity: 0.6;
   margin-top: 3px;
 }
@@ -748,11 +748,11 @@
   min-width: 0;
   border: 0;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   outline-offset: 2px !important;
 }
 .activity-toolbar input::placeholder {
-  color: #aaa;
+  color: #555b63;
 }
 .activity-toolbar > label > svg {
   color: #595b60;
@@ -760,7 +760,7 @@
 }
 .activity-toolbar .ref-pill {
   padding: 5px 8px;
-  font-size: 9px;
+  font-size: 12px;
   gap: 5px;
   background: transparent;
 }
@@ -797,8 +797,8 @@
   letter-spacing: -1px;
 }
 .activity-money > strong > small {
-  font-size: 8px;
-  color: #a4a6ab;
+  font-size: 12px;
+  color: #555b63;
   letter-spacing: 0;
 }
 .mini-bars {
@@ -849,7 +849,7 @@
 }
 .business-plans h3,
 .verify-card h3 {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.4px;
 }
@@ -862,7 +862,7 @@
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 9px;
+  font-size: 12px;
   text-align: left;
   position: relative;
   white-space: nowrap;
@@ -910,13 +910,13 @@
   background: var(--signal);
 }
 .verify-card p {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.15;
-  color: #b2b3b6;
+  color: #555b63;
 }
 .verify-card [data-slot="button"] {
   height: 32px;
-  font-size: 10px;
+  font-size: 12px;
   width: 100%;
   margin-top: 5px;
 }
@@ -946,7 +946,7 @@
   margin-top: 11px;
 }
 .days-card p {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: -0.2px;
   margin-top: 1px;
   white-space: nowrap;
@@ -990,7 +990,7 @@
   position: relative;
   justify-content: space-between;
   margin-top: 32px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .year-markers span {
   position: relative;
@@ -1041,7 +1041,7 @@
   letter-spacing: -0.8px;
 }
 .stocks-card p {
-  font-size: 9px;
+  font-size: 12px;
   margin-top: 2px;
 }
 .stocks-card .ref-pill {
@@ -1065,8 +1065,8 @@
   background: #eee;
 }
 .rating-card > p {
-  font-size: 10px;
-  color: #aaa;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 21px;
 }
 .rating-card > h2 {
@@ -1143,7 +1143,7 @@
 }
 .hr-header nav button {
   border-radius: 30px;
-  font-size: 11px;
+  font-size: 14px;
   padding: 13px 13px;
   white-space: nowrap;
 }
@@ -1159,7 +1159,7 @@
 }
 .hr-header-actions > .ref-pill {
   padding: 13px 15px;
-  font-size: 11px;
+  font-size: 14px;
   background: #ffffff90;
   border-color: #ffffff50;
 }
@@ -1190,7 +1190,7 @@
   max-width: 58%;
 }
 .hr-allocation p {
-  font-size: 13px;
+  font-size: 14px;
   margin: 0 0 10px 5px;
   white-space: nowrap;
 }
@@ -1200,7 +1200,7 @@
   display: flex;
   align-items: center;
   padding: 0 15px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .allocation-0 > span {
   background: var(--ref-ink);
@@ -1227,11 +1227,11 @@
     #ffffffdd 7px 9px
   );
   border: 1px solid #ffffff50;
-  color: #64676b;
+  color: #555b63;
 }
 .allocation-3 > span {
   border: 1px solid #9c9ea2;
-  color: #61656b;
+  color: #555b63;
 }
 .hr-kpis {
   display: flex;
@@ -1245,7 +1245,7 @@
 }
 .hr-kpis svg {
   background: #c7cbd050;
-  color: #797e85;
+  color: #555b63;
   padding: 2px;
   border-radius: 5px;
   width: 21px;
@@ -1259,7 +1259,7 @@
   line-height: 1;
 }
 .hr-kpis small {
-  font-size: 11px;
+  font-size: 14px;
   display: block;
   margin-top: 2px;
 }
@@ -1330,7 +1330,7 @@
   letter-spacing: -0.7px;
 }
 .hr-portrait p {
-  font-size: 11px;
+  font-size: 14px;
   color: #e8eaed;
   margin-top: 5px;
 }
@@ -1360,10 +1360,10 @@
   margin-bottom: 3px;
 }
 .hr-progress-value > p {
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0;
   line-height: 1.5;
-  color: #6f7278;
+  color: #555b63;
   margin-left: 7px;
 }
 .hr-bars {
@@ -1416,7 +1416,7 @@
   top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 9px;
+  font-size: 12px;
   border-radius: 30px;
   background: #dedfe2;
   padding: 8px 10px;
@@ -1437,8 +1437,8 @@
   background: #e0e2e5;
 }
 .hr-bars small {
-  font-size: 11px;
-  color: #91969c;
+  font-size: 14px;
+  color: #555b63;
 }
 .hr-timer {
   display: flex;
@@ -1470,7 +1470,7 @@
   letter-spacing: -1.5px;
 }
 .timer-dial .ref-ring small {
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 6px;
 }
 .timer-actions {
@@ -1521,7 +1521,7 @@
   position: relative;
 }
 .onboarding-allocation small {
-  font-size: 11px;
+  font-size: 14px;
   display: block;
   margin-bottom: 10px;
 }
@@ -1543,7 +1543,7 @@
   box-shadow: var(--ref-glass-shadow);
   backdrop-filter: blur(12px);
   border-radius: 14px;
-  font-size: 13px;
+  font-size: 14px;
   padding: 11px 12px;
 }
 .onboarding-allocation > div:nth-child(2) > span {
@@ -1617,7 +1617,7 @@
   line-height: 1;
 }
 .hr-task-card > .ref-card-heading > strong > span {
-  color: #b4b7bd;
+  color: #555b63;
 }
 .hr-task {
   display: flex;
@@ -1640,23 +1640,23 @@
 }
 .task-title {
   flex: 1;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.3;
   color: #eee;
   min-width: 0;
 }
 .task-title small {
   display: block;
-  font-size: 9px;
-  color: #a3a6ae;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 6px;
 }
 .hr-task.complete .task-icon {
   background: #ffffff15;
-  color: #b8bbc2;
+  color: #555b63;
 }
 .hr-task.complete .task-title {
-  color: #8d919a;
+  color: #555b63;
   text-decoration: line-through;
 }
 .hr-task input {
@@ -1679,14 +1679,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 14px;
   padding: 16px 0;
   text-align: left;
   gap: 6px;
   letter-spacing: -0.3px;
 }
 .hr-benefits > div > button > svg {
-  color: #7c838d;
+  color: #555b63;
 }
 .benefit-detail {
   display: flex;
@@ -1703,8 +1703,8 @@
 }
 .benefit-detail small {
   display: block;
-  font-size: 11px;
-  color: #7c828a;
+  font-size: 14px;
+  color: #555b63;
   margin-top: 4px;
   letter-spacing: 0;
 }
@@ -1714,9 +1714,9 @@
   height: 25px;
 }
 .benefit-detail p {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
-  color: #7c828a;
+  color: #555b63;
 }
 .laptop-art {
   width: 45px;
@@ -1761,7 +1761,7 @@
 .hr-calendar .ref-pill {
   border: 0;
   padding: 6px 14px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .calendar-days {
   display: grid;
@@ -1773,8 +1773,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-size: 13px;
-  color: #a3a7ad;
+  font-size: 14px;
+  color: #555b63;
   gap: 4px;
 }
 .calendar-days > div:nth-child(4) {
@@ -1782,7 +1782,7 @@
 }
 .calendar-days strong {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
 }
 .calendar-grid {
   position: relative;
@@ -1793,7 +1793,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  font-size: 11px;
+  font-size: 14px;
   padding: 8px 0 0;
   color: #555b63;
 }
@@ -1818,16 +1818,16 @@
   text-align: left;
   min-height: 46px;
   max-width: 77%;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.2;
   letter-spacing: -0.2px;
 }
 .calendar-event small {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.2;
   margin-top: 4px;
-  color: #a5a8ae;
+  color: #555b63;
 }
 .event-one {
   left: 17%;
@@ -1855,7 +1855,7 @@
   background: #9ca3ad;
   border: 1px solid #eee;
   margin-left: -5px;
-  font-size: 6px;
+  font-size: 12px;
   font-style: normal;
   color: white;
 }
@@ -1893,7 +1893,7 @@
 }
 .trip-brand > span {
   font-weight: 400;
-  color: #747a83;
+  color: #555b63;
   margin-left: -8px;
 }
 .trip-brand > i {
@@ -1915,14 +1915,14 @@
   border-radius: 9px;
   padding: 12px;
   margin: 0 8px 19px;
-  font-size: 11px;
+  font-size: 14px;
   color: #fff;
   border-color: var(--signal);
 }
 .trip-section-label {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.2px;
-  color: #a1a5ad;
+  color: #555b63;
   padding: 0 13px;
   margin: 0 0 10px !important;
 }
@@ -1930,9 +1930,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 14px;
   padding: 11px 14px;
-  color: #777d86;
+  color: #555b63;
   border-radius: 8px;
 }
 .trip-nav.active {
@@ -1950,7 +1950,7 @@
 }
 .trip-nav > span {
   margin-left: auto;
-  font-size: 9px;
+  font-size: 12px;
 }
 .trip-recent {
   margin: 22px 0;
@@ -1961,8 +1961,8 @@
   gap: 9px;
   padding: 8px 12px;
   width: 100%;
-  font-size: 10px;
-  color: #707782;
+  font-size: 12px;
+  color: #555b63;
 }
 .trip-recent > button > svg {
   margin-left: auto;
@@ -1991,7 +1991,7 @@
   backdrop-filter: blur(22px) saturate(1.25);
 }
 .trip-assistant .ref-card-heading {
-  font-size: 10px;
+  font-size: 12px;
 }
 .trip-assistant .ref-card-heading > span {
   display: flex;
@@ -2029,8 +2029,8 @@
   font-weight: 500;
 }
 .trip-assistant > p:not(.assistant-response) {
-  font-size: 9px;
-  color: #8f96a1;
+  font-size: 12px;
+  color: #555b63;
   line-height: 1.5;
   margin-top: 10px;
 }
@@ -2041,7 +2041,7 @@
   margin: 22px 0 12px;
 }
 .assistant-prompts button {
-  font-size: 8px;
+  font-size: 12px;
   padding: 6px 10px;
   border-radius: 7px;
   background: #ffffff50;
@@ -2058,7 +2058,7 @@
 .trip-assistant form input {
   border: 0;
   box-shadow: none;
-  font-size: 9px;
+  font-size: 12px;
   padding: 10px;
   height: 37px;
   min-width: 0;
@@ -2076,13 +2076,13 @@
   flex-shrink: 0;
 }
 .assistant-response {
-  font-size: 10px !important;
+  font-size: 12px !important;
   line-height: 1.7 !important;
   background: #ffffff80;
   border-radius: 7px;
   padding: 9px !important;
   margin-top: 10px !important;
-  color: #626b77;
+  color: #555b63;
 }
 .assistant-bottom {
   display: flex;
@@ -2094,9 +2094,9 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 6px;
+  font-size: 12px;
   letter-spacing: 0.8px;
-  color: #858e9b;
+  color: #555b63;
 }
 .assistant-bottom i {
   width: 3px;
@@ -2114,22 +2114,22 @@
   gap: 9px;
   align-items: center;
   margin: 17px 10px 7px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .trip-profile .ref-user-avatar {
   width: 29px;
   height: 29px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .trip-profile small {
   display: block;
-  font-size: 8px;
-  color: #9da2aa;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 2px;
 }
 .trip-profile > svg {
   margin-left: auto;
-  color: #7c838e;
+  color: #555b63;
 }
 .trip-main {
   min-width: 0;
@@ -2144,10 +2144,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .trip-header > div > span {
-  color: #9fa4ac;
+  color: #555b63;
 }
 .trip-header strong {
   font-weight: 400;
@@ -2199,7 +2199,7 @@
   backdrop-filter: blur(12px);
   border: 1px solid #ffffff25;
   overflow: hidden;
-  font-size: 10px;
+  font-size: 12px;
   color: white;
   transform: rotate(3deg);
 }
@@ -2248,7 +2248,7 @@
   color: white;
 }
 .trip-hero-title > span {
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 2px;
   opacity: 0.7;
 }
@@ -2260,7 +2260,7 @@
   line-height: 1;
 }
 .trip-hero-title p {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.65;
   color: #e2e6eb;
@@ -2285,7 +2285,7 @@
   border-radius: 9px;
 }
 .trip-hero-bottom nav button {
-  font-size: 11px;
+  font-size: 14px;
   color: #fff;
   padding: 11px 23px;
   border-radius: 6px;
@@ -2338,7 +2338,7 @@
   color: white;
 }
 .trip-stats > article > p {
-  font-size: 10px;
+  font-size: 12px;
   color: #555e6b;
   margin: 13px 0 0;
 }
@@ -2425,8 +2425,8 @@
   left: 0;
   right: 0;
   font-style: normal;
-  color: #969da7;
-  font-size: 9px;
+  color: #555b63;
+  font-size: 12px;
 }
 .trip-map {
   height: 280px;
@@ -2523,15 +2523,15 @@
   border-radius: 7px;
 }
 .map-place > span:nth-child(2) {
-  font-size: 12px;
+  font-size: 14px;
   flex: 1;
 }
 .map-place small {
   display: flex;
   align-items: center;
   gap: 3px;
-  font-size: 8px;
-  color: #8b939e;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 8px;
 }
 .map-place small i {
@@ -2550,9 +2550,9 @@
   position: absolute;
   left: 14px;
   bottom: 3px;
-  font-size: 5px;
+  font-size: 12px;
   letter-spacing: 0.7px;
-  color: #939da9;
+  color: #555b63;
 }
 .trip-tab-content {
   padding: 30px;
@@ -2578,8 +2578,8 @@
   text-align: left;
 }
 .trip-tab-content > p {
-  font-size: 11px;
-  color: #9ca4ae;
+  font-size: 14px;
+  color: #555b63;
   margin-top: 30px;
 }
 @media (min-width: 1500px) {
@@ -2675,7 +2675,7 @@
     padding: 27px;
   }
   .hr-header nav button {
-    font-size: 12px;
+    font-size: 14px;
     padding: 15px 16px;
   }
   .hr-reference > h1 {
@@ -2724,7 +2724,7 @@
   }
   .calendar-event {
     padding: 13px 16px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .trip-reference {
     grid-template-columns: 275px minmax(0, 1fr);
@@ -2741,7 +2741,7 @@
     font-size: 69px;
   }
   .trip-hero-title p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .trip-stats > article {
     min-height: 185px;
@@ -2776,7 +2776,7 @@
     font-size: 24px;
   }
   .finance-date p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .finance-date > i {
     margin: 0;
@@ -2785,7 +2785,7 @@
     height: 39px;
     padding: 0 14px;
     gap: 14px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .finance-date .ref-round {
     width: 36px;
@@ -2821,7 +2821,7 @@
     height: 77px;
   }
   .system-lock {
-    font-size: 8px;
+    font-size: 12px;
     gap: 6px;
   }
   .system-lock svg {
@@ -2831,21 +2831,21 @@
     font-size: 15px;
   }
   .ref-ring small {
-    font-size: 6px;
+    font-size: 12px;
   }
   .bank-card-top {
     padding: 16px;
   }
   .bank-card-top .ref-pill {
-    font-size: 8px;
+    font-size: 12px;
     padding: 5px 9px;
   }
   .bank-card-top > p {
     margin-top: 19px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .bank-number {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 10px;
   }
   .bank-fee {
@@ -2853,13 +2853,13 @@
     gap: 5px;
   }
   .bank-fee small {
-    font-size: 8px;
+    font-size: 12px;
   }
   .bank-fee strong {
     font-size: 14px;
   }
   .bank-fee > button {
-    font-size: 8px;
+    font-size: 12px;
   }
   .bank-fee > button > svg {
     width: 15px;
@@ -2869,24 +2869,24 @@
     padding: 15px 16px;
   }
   .income-half > small {
-    font-size: 8px;
+    font-size: 12px;
     margin-top: 13px;
   }
   .income-value > strong {
     font-size: 14px;
   }
   .income-value > button {
-    font-size: 7px;
+    font-size: 12px;
   }
   .income-half select {
-    font-size: 8px;
+    font-size: 12px;
   }
   .income-half .round-icon {
     width: 25px;
     height: 25px;
   }
   .ref-card-heading h2 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .finance-main {
     gap: 10px;
@@ -2899,7 +2899,7 @@
     min-height: 250px;
   }
   .annual-profit select {
-    font-size: 8px;
+    font-size: 12px;
   }
   .profit-circles {
     height: 210px;
@@ -2922,20 +2922,20 @@
     height: 76px;
   }
   .profit-circle > span {
-    font-size: 13px;
+    font-size: 14px;
     margin-top: 18px;
   }
   .profit-circle.circle-2 > span {
     margin-top: 20px;
   }
   .profit-circle.circle-3 > span {
-    font-size: 12px;
+    font-size: 14px;
   }
   .activity-manager {
     padding: 15px 17px 17px;
   }
   .activity-manager .ref-card-heading .ref-pill {
-    font-size: 8px;
+    font-size: 12px;
     padding: 5px 8px;
   }
   .activity-manager > .ref-card-heading .ref-round {
@@ -2946,10 +2946,10 @@
     margin: 16px 0;
   }
   .activity-toolbar input {
-    font-size: 8px;
+    font-size: 12px;
   }
   .activity-toolbar .ref-pill {
-    font-size: 7px;
+    font-size: 12px;
     padding: 4px 6px;
   }
   .activity-toolbar .ref-inline {
@@ -2967,17 +2967,17 @@
     font-size: 20px;
   }
   .activity-money > strong > small {
-    font-size: 6px;
+    font-size: 12px;
   }
   .mini-bars {
     gap: 4px;
   }
   .business-plans h3,
   .verify-card h3 {
-    font-size: 9px;
+    font-size: 12px;
   }
   .business-plans button {
-    font-size: 7px;
+    font-size: 12px;
     gap: 5px;
   }
   .business-plans button > span:first-child {
@@ -2989,11 +2989,11 @@
     top: 16px;
   }
   .verify-card p {
-    font-size: 8px;
+    font-size: 12px;
   }
   .verify-card [data-slot="button"] {
     height: 27px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .verify-symbol svg {
     width: 29px;
@@ -3017,13 +3017,13 @@
     font-size: 15px;
   }
   .days-card p {
-    font-size: 6px;
+    font-size: 12px;
   }
   .dot-calendar {
     gap: 1.5px;
   }
   .year-markers span {
-    font-size: 7px;
+    font-size: 12px;
     padding: 4px 6px;
     height: 18px;
   }
@@ -3041,10 +3041,10 @@
     font-size: 16px;
   }
   .stocks-card p {
-    font-size: 7px;
+    font-size: 12px;
   }
   .stocks-card .ref-pill {
-    font-size: 12px;
+    font-size: 14px;
     padding: 4px 8px;
   }
   .ref-sparkline {
@@ -3058,7 +3058,7 @@
     font-size: 17px;
   }
   .rating-card > p {
-    font-size: 8px;
+    font-size: 12px;
     margin-top: 15px;
   }
   .mood-buttons {
@@ -3080,11 +3080,11 @@
     font-size: 22px;
   }
   .hr-header nav button {
-    font-size: 9px;
+    font-size: 12px;
     padding: 11px 10px;
   }
   .hr-header-actions > .ref-pill {
-    font-size: 9px;
+    font-size: 12px;
     padding: 11px;
   }
   .hr-header-actions > .ref-round {
@@ -3099,11 +3099,11 @@
     gap: 20px;
   }
   .hr-allocation p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .hr-allocation > div > span {
     height: 35px;
-    font-size: 9px;
+    font-size: 12px;
     padding: 0 12px;
   }
   .hr-kpis {
@@ -3113,7 +3113,7 @@
     font-size: 45px;
   }
   .hr-kpis small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hr-kpis svg {
     width: 18px;
@@ -3143,10 +3143,10 @@
     font-size: 17px;
   }
   .hr-portrait p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hr-portrait > div > span {
-    font-size: 13px;
+    font-size: 14px;
     padding: 8px 11px;
   }
   .hr-progress-value {
@@ -3157,7 +3157,7 @@
     font-size: 18px;
   }
   .hr-progress-value > p {
-    font-size: 9px;
+    font-size: 12px;
     margin-left: 3px;
   }
   .hr-bars {
@@ -3171,11 +3171,11 @@
     width: 5px;
   }
   .hr-bars > div > div > span {
-    font-size: 7px;
+    font-size: 12px;
     padding: 6px 8px;
   }
   .hr-bars small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hr-bars b {
     width: 5px;
@@ -3191,7 +3191,7 @@
     font-size: 29px;
   }
   .timer-dial .ref-ring small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .timer-actions .ref-round {
     width: 35px;
@@ -3211,12 +3211,12 @@
     margin-top: 18px;
   }
   .onboarding-allocation small {
-    font-size: 9px;
+    font-size: 12px;
     margin-bottom: 8px;
   }
   .onboarding-allocation span {
     height: 34px;
-    font-size: 11px;
+    font-size: 14px;
     padding: 9px;
   }
   .task-stack {
@@ -3244,10 +3244,10 @@
     height: 33px;
   }
   .task-title {
-    font-size: 9px;
+    font-size: 12px;
   }
   .task-title small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .hr-task input {
     width: 12px;
@@ -3257,7 +3257,7 @@
     padding: 9px 18px;
   }
   .hr-benefits > div > button {
-    font-size: 11px;
+    font-size: 14px;
     padding-block: 14px;
   }
   .benefit-detail {
@@ -3266,10 +3266,10 @@
     padding-bottom: 14px;
   }
   .benefit-detail > span {
-    font-size: 12px;
+    font-size: 14px;
   }
   .benefit-detail small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .laptop-art {
     width: 36px;
@@ -3279,10 +3279,10 @@
     padding: 17px;
   }
   .hr-calendar > .ref-card-heading h2 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .hr-calendar .ref-pill {
-    font-size: 8px;
+    font-size: 12px;
     padding: 5px 10px;
   }
   .calendar-days {
@@ -3291,34 +3291,34 @@
     margin: 16px 0 10px;
   }
   .calendar-days > div {
-    font-size: 11px;
+    font-size: 14px;
   }
   .calendar-days strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .calendar-grid {
     height: 127px;
   }
   .calendar-times {
-    font-size: 9px;
+    font-size: 12px;
   }
   .calendar-lines {
     left: 48px;
   }
   .calendar-event {
-    font-size: 9px;
+    font-size: 12px;
     padding: 8px 10px;
     gap: 10px;
     border-radius: 13px;
     min-height: 40px;
   }
   .calendar-event small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .tiny-avatars i {
     width: 17px;
     height: 17px;
-    font-size: 5px;
+    font-size: 12px;
   }
   .event-two {
     top: 73px;
@@ -3350,7 +3350,7 @@
     margin-bottom: 18px;
   }
   .trip-hero-title p {
-    font-size: 9px;
+    font-size: 12px;
     max-width: 420px;
   }
   .trip-hero-bottom {
@@ -3360,7 +3360,7 @@
   }
   .trip-hero-bottom nav button {
     padding: 10px 16px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .trip-hero-bottom .ref-round {
     width: 33px;
@@ -3386,7 +3386,7 @@
     font-size: 19px;
   }
   .trip-budget small {
-    font-size: 12px;
+    font-size: 14px;
   }
   .budget-bars {
     gap: 4px;
@@ -3483,7 +3483,7 @@
   }
   .hr-header nav button {
     padding: 10px 7px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .hr-header-actions > .ref-pill {
     font-size: 0;
@@ -3516,7 +3516,7 @@
     max-width: 59%;
   }
   .hr-allocation p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .hr-allocation > div > span {
     padding-inline: 9px;
@@ -3535,14 +3535,14 @@
     display: inline-block;
     margin-top: 10px;
     padding: 5px 10px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .hr-progress-value {
     font-size: 24px;
     gap: 5px;
   }
   .hr-progress-value > p {
-    font-size: 8px;
+    font-size: 12px;
   }
   .timer-dial {
     width: 137px;
@@ -3559,7 +3559,7 @@
     padding: 22px 12px 16px;
   }
   .hr-task-card h3 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .hr-task {
     gap: 7px;
@@ -3569,10 +3569,10 @@
     height: 29px;
   }
   .task-title {
-    font-size: 8px;
+    font-size: 12px;
   }
   .task-title small {
-    font-size: 6px;
+    font-size: 12px;
   }
   .hr-onboarding > .ref-card-heading > strong {
     font-size: 23px;
@@ -3584,10 +3584,10 @@
     padding: 9px 15px;
   }
   .hr-benefits > div > button {
-    font-size: 10px;
+    font-size: 12px;
   }
   .benefit-detail > span {
-    font-size: 11px;
+    font-size: 14px;
   }
   .laptop-art {
     width: 30px;
@@ -3612,11 +3612,11 @@
   }
   .trip-hero-title p {
     max-width: 340px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .trip-hero-bottom nav button {
     padding: 10px 13px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .trip-hero-bottom > div .ref-round {
     width: 30px;
@@ -3644,10 +3644,10 @@
     font-size: 15px;
   }
   .trip-assistant .ref-card-heading {
-    font-size: 9px;
+    font-size: 12px;
   }
   .assistant-prompts button {
-    font-size: 7px;
+    font-size: 12px;
     padding: 5px 8px;
   }
 }
@@ -3660,10 +3660,10 @@
     gap: 15px;
   }
   .study-brand {
-    font-size: 12px;
+    font-size: 14px;
   }
   .study-brand > span {
-    font-size: 7px;
+    font-size: 12px;
   }
   .study-toolbar nav {
     order: 3;
@@ -3673,7 +3673,7 @@
     height: 32px;
   }
   .study-toolbar nav a {
-    font-size: 10px;
+    font-size: 12px;
     gap: 5px;
     padding-bottom: 3px;
   }
@@ -3693,7 +3693,7 @@
     flex-direction: column;
     gap: 6px;
     padding: 14px 4px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .reference-studio .site-footer {
     padding: 8px 18px 20px;
@@ -3731,7 +3731,7 @@
   .finance-user .ref-user-avatar {
     width: 34px;
     height: 34px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .finance-user > div {
     display: none;
@@ -3765,7 +3765,7 @@
     font-size: 24px;
   }
   .finance-date p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .finance-date > i {
     height: 26px;
@@ -3774,7 +3774,7 @@
   .finance-date [data-slot="button"] {
     height: 38px;
     gap: 16px;
-    font-size: 10px;
+    font-size: 12px;
     padding-inline: 17px;
   }
   .finance-date > .ref-round {
@@ -3823,7 +3823,7 @@
     height: 95px;
   }
   .finance-micro .system-lock {
-    font-size: 10px;
+    font-size: 12px;
   }
   .bank-card,
   .income-card,
@@ -3835,12 +3835,12 @@
     padding: 18px;
   }
   .bank-card-top .ref-pill {
-    font-size: 8px;
+    font-size: 12px;
     padding: 5px 8px;
   }
   .bank-card-top > p {
     margin-top: 22px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .bank-number {
     font-size: 14px;
@@ -3850,25 +3850,25 @@
     gap: 7px;
   }
   .bank-fee small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .bank-fee > button {
-    font-size: 8px;
+    font-size: 12px;
   }
   .income-half {
     padding: 18px;
   }
   .income-half > small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .income-value > strong {
     font-size: 16px;
   }
   .income-value > button {
-    font-size: 8px;
+    font-size: 12px;
   }
   .income-half select {
-    font-size: 9px;
+    font-size: 12px;
   }
   .finance-lower {
     grid-template-columns: 1fr 1.65fr;
@@ -3879,10 +3879,10 @@
     padding: 20px 17px 0;
   }
   .annual-profit h2 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .annual-profit select {
-    font-size: 8px;
+    font-size: 12px;
   }
   .profit-circle.circle-0 {
     width: 200px;
@@ -3901,14 +3901,14 @@
     height: 80px;
   }
   .profit-circle > span {
-    font-size: 13px;
+    font-size: 14px;
     margin-top: 15px;
   }
   .profit-circle.circle-2 > span {
     margin-top: 18px;
   }
   .profit-circle.circle-3 > span {
-    font-size: 13px;
+    font-size: 14px;
   }
   .profit-circles {
     height: 225px;
@@ -3917,17 +3917,17 @@
     padding: 20px 17px;
   }
   .activity-manager .ref-card-heading h2 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .activity-manager .ref-card-heading .ref-inline > .ref-round {
     display: none;
   }
   .activity-manager .ref-pill {
-    font-size: 9px;
+    font-size: 12px;
     padding: 5px 8px;
   }
   .activity-toolbar > label > input {
-    font-size: 9px;
+    font-size: 12px;
   }
   .activity-toolbar > .ref-inline {
     display: none;
@@ -3968,7 +3968,7 @@
     font-size: 20px;
   }
   .days-card > p {
-    font-size: 8px;
+    font-size: 12px;
   }
   .dot-calendar {
     grid-column: 1/-1;
@@ -3994,7 +3994,7 @@
     font-size: 18px;
   }
   .stocks-card .ref-pill {
-    font-size: 12px;
+    font-size: 14px;
     padding: 4px 8px;
   }
   .rating-card {
@@ -4029,13 +4029,13 @@
     overflow-x: auto;
   }
   .hr-header nav button {
-    font-size: 9px;
+    font-size: 12px;
     padding: 10px 9px;
     flex-shrink: 0;
   }
   .hr-header-actions > .ref-pill {
     padding: 10px 12px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .hr-header-actions > .ref-round {
     width: 37px;
@@ -4056,11 +4056,11 @@
     max-width: none;
   }
   .hr-allocation p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .hr-allocation > div > span {
     height: 35px;
-    font-size: 10px;
+    font-size: 12px;
     padding-inline: 12px;
   }
   .hr-kpis {
@@ -4071,7 +4071,7 @@
     font-size: 48px;
   }
   .hr-kpis small {
-    font-size: 10px;
+    font-size: 12px;
   }
   .hr-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4111,7 +4111,7 @@
     font-size: 35px;
   }
   .hr-progress-value > p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .hr-bars {
     margin-top: 27px;
@@ -4173,7 +4173,7 @@
     padding: 3px 3px 14px;
   }
   .trip-header > div {
-    font-size: 9px;
+    font-size: 12px;
     gap: 8px;
   }
   .trip-header .ref-round {
@@ -4202,7 +4202,7 @@
     font-size: 54px;
   }
   .trip-hero-title p {
-    font-size: 10px;
+    font-size: 12px;
     max-width: 430px;
   }
   .trip-hero-title p br {
@@ -4215,7 +4215,7 @@
     gap: 10px;
   }
   .trip-hero-bottom nav button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 10px 18px;
   }
   .trip-hero-bottom .ref-round {
@@ -4255,7 +4255,7 @@
     font-size: 23px;
   }
   .trip-tab-content > button {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 @media (max-width: 520px) {
@@ -4266,12 +4266,12 @@
     padding-inline: 15px;
   }
   .study-brand > span {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1px;
     margin-left: 2px;
   }
   .study-toolbar nav a {
-    font-size: 9px;
+    font-size: 12px;
   }
   .finance-header {
     padding: 22px 18px 15px;
@@ -4298,7 +4298,7 @@
     font-size: 23px;
   }
   .finance-date p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .finance-date > i {
     margin: 0;
@@ -4307,7 +4307,7 @@
     height: 35px;
     gap: 14px;
     padding: 0 12px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .finance-date > .ref-round {
     display: none;
@@ -4343,10 +4343,10 @@
   }
   .bank-card-top > p {
     margin-top: 23px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .bank-card-top .ref-pill {
-    font-size: 9px;
+    font-size: 12px;
     padding: 6px 12px;
   }
   .bank-number {
@@ -4359,13 +4359,13 @@
     padding: 18px 21px;
   }
   .bank-fee small {
-    font-size: 10px;
+    font-size: 12px;
   }
   .bank-fee strong {
     font-size: 18px;
   }
   .bank-fee > button {
-    font-size: 10px;
+    font-size: 12px;
   }
   .income-card {
     display: grid;
@@ -4379,11 +4379,11 @@
     height: 24px;
   }
   .income-half select {
-    font-size: 8px;
+    font-size: 12px;
     padding: 4px 6px;
   }
   .income-half > small {
-    font-size: 9px;
+    font-size: 12px;
     margin-top: 20px;
   }
   .income-value {
@@ -4394,7 +4394,7 @@
     font-size: 17px;
   }
   .income-value > button {
-    font-size: 8px;
+    font-size: 12px;
   }
   .income-value > button > span > br {
     display: none;
@@ -4424,7 +4424,7 @@
     font-size: 16px;
   }
   .annual-profit select {
-    font-size: 10px;
+    font-size: 12px;
   }
   .profit-circles {
     height: 265px;
@@ -4466,7 +4466,7 @@
     margin: 20px 0;
   }
   .activity-toolbar input {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
   .activity-cards {
     grid-template-columns: 1fr 1fr;
@@ -4480,10 +4480,10 @@
     font-size: 25px;
   }
   .verify-card h3 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .verify-card p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .business-plans {
     display: block;
@@ -4492,7 +4492,7 @@
     padding: 19px !important;
   }
   .business-plans h3 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .business-plans > div {
     display: flex;
@@ -4501,7 +4501,7 @@
     margin-top: 15px;
   }
   .business-plans button {
-    font-size: 9px;
+    font-size: 12px;
   }
   .business-plans button:not(:last-child):after {
     display: none;
@@ -4533,7 +4533,7 @@
     font-size: 20px;
   }
   .days-card p {
-    font-size: 8px;
+    font-size: 12px;
   }
   .dot-calendar {
     gap: 2px;
@@ -4555,7 +4555,7 @@
     font-size: 21px;
   }
   .stocks-card p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .stocks-card .ref-pill {
     font-size: 16px;
@@ -4569,7 +4569,7 @@
     min-height: 230px;
   }
   .rating-card > p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .rating-card > h2 {
     font-size: 24px;
@@ -4618,7 +4618,7 @@
     gap: 3px;
   }
   .hr-header nav button {
-    font-size: 9px;
+    font-size: 12px;
     padding: 10px 12px;
   }
   .hr-reference > h1 {
@@ -4635,12 +4635,12 @@
     grid-template-columns: 1.1fr 1fr 2.7fr 0.9fr;
   }
   .hr-allocation p {
-    font-size: 9px;
+    font-size: 12px;
     margin-left: 2px;
     margin-bottom: 9px;
   }
   .hr-allocation > div > span {
-    font-size: 9px;
+    font-size: 12px;
     height: 32px;
     padding-inline: 10px;
   }
@@ -4660,7 +4660,7 @@
     gap: 4px;
   }
   .hr-kpis small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hr-grid {
     grid-template-columns: 1fr;
@@ -4694,7 +4694,7 @@
     font-size: 24px;
   }
   .hr-portrait p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .hr-card {
     padding: 25px;
@@ -4707,7 +4707,7 @@
     margin-top: 15px;
   }
   .hr-progress-value > p {
-    font-size: 12px;
+    font-size: 14px;
     margin-left: 12px;
   }
   .hr-bars {
@@ -4717,7 +4717,7 @@
     height: 130px;
   }
   .hr-bars > div > div > span {
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px 11px;
     top: -15px;
   }
@@ -4725,7 +4725,7 @@
     width: 7px;
   }
   .hr-bars small {
-    font-size: 12px;
+    font-size: 14px;
   }
   .hr-timer {
     min-height: 335px;
@@ -4739,7 +4739,7 @@
     font-size: 40px;
   }
   .timer-dial .ref-ring small {
-    font-size: 13px;
+    font-size: 14px;
   }
   .timer-actions .ref-round {
     width: 45px;
@@ -4765,7 +4765,7 @@
     padding: 12px 13px;
   }
   .onboarding-allocation small {
-    font-size: 12px;
+    font-size: 14px;
   }
   .task-stack {
     margin-top: 48px;
@@ -4789,10 +4789,10 @@
     height: 44px;
   }
   .task-title {
-    font-size: 13px;
+    font-size: 14px;
   }
   .task-title small {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 6px;
   }
   .hr-task input {
@@ -4814,7 +4814,7 @@
     font-size: 18px;
   }
   .benefit-detail small {
-    font-size: 12px;
+    font-size: 14px;
   }
   .laptop-art {
     width: 52px;
@@ -4828,7 +4828,7 @@
     font-size: 15px;
   }
   .hr-calendar .ref-pill {
-    font-size: 9px;
+    font-size: 12px;
     padding: 6px 9px;
   }
   .calendar-days {
@@ -4836,28 +4836,28 @@
     gap: 2px;
   }
   .calendar-days > div {
-    font-size: 10px;
+    font-size: 12px;
   }
   .calendar-days strong {
-    font-size: 11px;
+    font-size: 14px;
   }
   .calendar-grid {
     height: 160px;
   }
   .calendar-times {
-    font-size: 9px;
+    font-size: 12px;
   }
   .calendar-lines {
     left: 43px;
   }
   .calendar-event {
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
     padding: 11px 12px;
     max-width: 82%;
   }
   .calendar-event small {
-    font-size: 8px;
+    font-size: 12px;
   }
   .event-one {
     left: 16%;
@@ -4870,7 +4870,7 @@
   .tiny-avatars i {
     height: 17px;
     width: 17px;
-    font-size: 5px;
+    font-size: 12px;
   }
   .trip-reference {
     padding: 10px;
@@ -4881,7 +4881,7 @@
   }
   .trip-header > div:first-child {
     gap: 6px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .trip-header > div:first-child > span {
     display: none;
@@ -4906,7 +4906,7 @@
     right: 17px;
   }
   .trip-hero-title > span {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1.5px;
   }
   .trip-hero-title h1 {
@@ -4915,7 +4915,7 @@
     margin-bottom: 19px;
   }
   .trip-hero-title p {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.8;
     max-width: 260px;
   }
@@ -4934,7 +4934,7 @@
   }
   .trip-hero-bottom nav button {
     padding: 9px 12px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .trip-hero-bottom > div {
     margin-left: auto;
@@ -4996,7 +4996,7 @@
     width: 9px;
   }
   .trip-stats > article > p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .trip-map {
     height: 340px;
@@ -5022,7 +5022,7 @@
     padding: 7px;
   }
   .map-place > span:nth-child(2) {
-    font-size: 11px;
+    font-size: 14px;
   }
   .map-place > svg {
     margin-left: 0;
@@ -5033,7 +5033,7 @@
     height: 38px;
   }
   .map-place small {
-    font-size: 7px;
+    font-size: 12px;
     gap: 2px;
   }
   .map-place small i {
@@ -5055,11 +5055,11 @@
     font-size: 21px;
   }
   .trip-tab-content > button {
-    font-size: 11px;
+    font-size: 14px;
     padding: 20px 0;
   }
   .trip-tab-content > p {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -5128,11 +5128,11 @@
     margin: 20px 0;
   }
   .assistant-prompts button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px 12px;
   }
   .trip-assistant form input {
-    font-size: 12px;
+    font-size: 14px;
   }
   .trip-main {
     grid-row: 1;
@@ -5214,7 +5214,7 @@
   line-height: 1.7;
 }
 .hr-bars > div > div > span {
-  font-size: 8px;
+  font-size: 12px;
 }
 .trip-hero-title h1 {
   font-size: 52px;
@@ -5301,3 +5301,24 @@
 .growth .ref-ring > svg > circle:nth-child(2) { stroke: var(--signal); }
 .income-half:first-child .income-value > strong,
 .hr-kpis > div:first-child strong { color: var(--signal); }
+
+/* Legible text on light glass; preserve light labels on dark/photo surfaces. */
+.reference-canvas { line-height: 1.5; }
+.reference-canvas input::placeholder { color: #626872; opacity: 1; }
+.verify-card p { line-height: 1.6; }
+.ref-ring small { opacity: 1; }
+.hr-task-card .task-title small,
+.hr-task-card .task-title,
+.hr-task-card > .ref-card-heading > strong > span { color: #d9dce1; }
+.trip-hero-title p { color: #fff; }
+.hr-portrait p { color: #fff; }
+.reference-credit { flex-wrap: wrap; }
+.study-toolbar nav { flex-wrap: wrap; }
+
+.hr-task-card .hr-task.complete .task-title,
+.event-one small { color: #c5cad2; }
+.busy-bars i > span { white-space: nowrap; left: 50%; right: auto; transform: translateX(-50%); }
+@media (max-width: 520px) {
+  .calendar-event .tiny-avatars { display: none; }
+  .calendar-event { max-width: 72%; }
+}
