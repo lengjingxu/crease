@@ -26,6 +26,7 @@ import {
 import { CreaseApp } from "@/components/crease/app";
 import { Mark } from "@/components/crease/mark";
 import { cn } from "@/lib/utils";
+import themeCss from "@/theme/crease.css?raw";
 
 const pages = [
   { id: "finance", label: "财务概览", en: "财务", icon: Wallet },
@@ -181,7 +182,7 @@ function DesignSystem() {
   async function copy() {
     try {
       await navigator.clipboard.writeText(
-        ":root { --background: #ffffff; --foreground: #0a0a0c; --primary: #0a0a0c; --signal: #d31218; --radius: 0.5rem; }",
+        themeCss,
       );
       setCopied(true);
       setError("");
@@ -196,9 +197,10 @@ function DesignSystem() {
         title="清晰，自成风格"
         description="白是场域，黑是重量，红是方向。让材质服务于信息。"
       >
+        <Button asChild variant="outline"><a href="/examples/theme.html">可迁移示例</a></Button>
         <Button variant="outline" onClick={copy}>
           {copied ? <Check size={15} /> : <Copy size={15} />}{" "}
-          {copied ? "已复制变量" : "复制核心变量"}
+          {copied ? "已复制完整主题" : "复制完整主题"}
         </Button>
       </Heading>
       {error && <p role="alert">{error}</p>}

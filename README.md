@@ -1,6 +1,12 @@
 # CREASE / Reference studies
 
-白色场域、近黑亚克力、玻璃叠层与红色细线。以三个 Dribbble 稿件为结构基准，保留卡片组合、比例、信息层级与图表细节，转译为 CREASE 原主题配色。界面导航、按钮、说明与弹窗统一使用中文。
+白色场域、近黑亚克力、玻璃叠层、冰蓝环境光与信号红。以三个 Dribbble 稿件为结构基准，保留卡片组合、比例、信息层级与图表细节，转译为 CREASE 原主题配色。界面导航、按钮、说明与弹窗统一使用中文。
+
+## 在其他项目复用
+
+先读 [design.md](design.md)，复制 [src/theme/crease.css](src/theme/crease.css)，再用 [examples/theme.tsx](examples/theme.tsx) 验证。主题是唯一变量与材质来源，参考页布局 CSS 不需要迁移。新项目的 AGENTS.md 应明确要求读取 design.md。
+
+运行后打开 /examples/theme.html 查看只依赖主题和 shadcn 的独立示例，支持深浅切换、项目表单和错误提示；生产构建也包含该入口。设计语言页的“复制完整主题”会复制整个主题文件。
 
 ## 运行
 
@@ -32,7 +38,7 @@ npm run preview
 
 React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 shadcn/ui（Radix）。Outfit / Syne 字体本地打包。
 
-- src/theme/crease.css：保留原来的 shadcn 主题变量；主操作是近黑，红色 --signal 只用于路径、细线与点。
+- [src/theme/crease.css](src/theme/crease.css)：可独立迁移的 Tailwind v4 / shadcn 主题；包含完整语义色、玻璃、冰蓝光、深黑亚克力与深浅模式。
 - src/theme/references.css：三个参考页的结构、材质和响应式布局。
 - src/theme/studio.css：主题规范与参考页导航。
 - src/components/studio/references.tsx：三个独立页面及交互。
