@@ -10,8 +10,8 @@
   --color-on-signal: #ffffff;
   --color-signal-soft: color-mix(in oklab, #d31218 10%, #ffffff);
 
-  --leading-display: 0.92;
-  --tracking-display: -0.045em;
+  --leading-display: 1.3;
+  --tracking-display: 0.01em;
   --tracking-kicker: 0.18em;
 
 }

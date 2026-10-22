@@ -28,7 +28,7 @@
 3. 复制 src/lib/utils.ts、需要的 src/components/ui/ 文件及对应 kit 文件。安装 react、react-dom、radix-ui、lucide-react、class-variance-authority、clsx、tailwind-merge；版本以根 package.json 为准。
 4. 页面根部使用 crease-canvas。玻璃容器使用 crease-glass，重点黑色区域使用 crease-ink。深色模式由祖先 .dark 控制。
 5. 复制所选 src/templates/ 文件和它直接导入的组件；内容模板还需 src/assets/ 三张原创 SVG。Companion 必须连同 companion.css 复制。
-6. Outfit / Syne 为可选本地拉丁字体；中文遵循主题系统字体栈。如使用 examples/library.tsx 的完整入口，同时安装 @fontsource/outfit 和 @fontsource/syne。
+6. Outfit / Syne 为可选本地拉丁字体；中文由主题自托管 Noto Sans SC Variable，需安装 @fontsource-variable/noto-sans-sc；排版角色见 design.md。如使用 examples/library.tsx 的完整入口，同时安装 @fontsource/outfit 和 @fontsource/syne。
 
 顶部“查看可复制源码”提供模板、组合组件与主题源码。该视图不包含完整依赖树；迁移仍须按 imports 复制基础组件。Tooltip 的使用区域需包裹 TooltipProvider。
 

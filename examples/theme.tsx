@@ -31,7 +31,7 @@ function ThemeExample() {
         <section className="grid items-end gap-6 py-6 md:grid-cols-[1fr_auto]">
           <div className="space-y-4">
             <p className="crease-caption tracking-widest">工作空间 / 设计团队</p>
-            <h1 className="text-3xl leading-tight font-medium tracking-tight sm:text-5xl">让好想法，清晰发生<span className="text-primary">。</span></h1>
+            <h1 className="crease-title">让好想法，清晰发生<span className="text-primary">。</span></h1>
             <p className="crease-body max-w-xl text-muted-foreground">把目标、进度与下一步放在同一个地方，给重要的工作留出空间。</p>
           </div>
           <Button className="min-h-11" onClick={() => setOpen(true)}>新建项目<ArrowUpRight /></Button>
