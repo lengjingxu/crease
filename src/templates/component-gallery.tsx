@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { CircleHelp, Check } from "lucide-react";
+import { MaterialStudy } from "@/components/kit/material-study";
 import { MetricCard } from "@/components/kit/metric-card";
 import { Notice, StatePanel, TaskProgress, ConfirmDialog } from "@/components/kit/feedback";
 
@@ -14,6 +15,7 @@ export function ComponentGallery(){
  useEffect(()=>{if(!running)return;const id=setInterval(()=>setProgress(v=>Math.min(100,v+10)),350);return()=>clearInterval(id);},[running]);
  useEffect(()=>{if(progress===100){setRunning(false);setNotice("演示任务已完成。");}},[progress]);
  return <div className="space-y-8"><header><p className="mb-3 text-xs tracking-widest text-muted-foreground">组件实验室 / 基础与反馈</p><h1 className="text-3xl font-medium sm:text-4xl">每个细节，都可以直接复用<span className="text-primary">。</span></h1><p className="mt-3 text-sm text-muted-foreground">统一材质与可读文字，覆盖常用操作及完整状态。</p></header>
+ <MaterialStudy />
  <div className="grid gap-5 xl:grid-cols-2"><section className="crease-glass space-y-6 rounded-2xl p-6"><h2 className="text-xl font-medium">操作与输入</h2><div className="flex flex-wrap gap-3"><Button onClick={()=>setModal(true)}>打开表单弹窗</Button><Button variant="outline" onClick={()=>setConfirm(true)}>删除确认</Button><Button disabled>不可用</Button><Tooltip><TooltipTrigger asChild><Button variant="ghost" size="icon" aria-label="组件说明"><CircleHelp /></Button></TooltipTrigger><TooltipContent>键盘可聚焦，触控区域至少 44px。</TooltipContent></Tooltip></div><label className="block space-y-2 text-sm"><span>工作空间名称</span><Input placeholder="例如：产品设计组" className="h-11" /></label><div className="flex flex-wrap gap-2"><Badge>进行中</Badge><Badge variant="outline"><Check />已完成</Badge><Badge variant="secondary">待启动</Badge><Badge variant="destructive">需要处理</Badge></div></section>
  <section className="crease-glass space-y-6 rounded-2xl p-6"><h2 className="text-xl font-medium">可取消的等待</h2><p className="text-sm leading-7 text-muted-foreground">显示真实步骤、当前进度和可执行操作。此处为定时器驱动的本地演示。</p><TaskProgress value={progress} label={running?"正在整理设计资产":"设计资产整理"} onCancel={running?()=>{setRunning(false);setNotice("演示任务已取消。");}:undefined} /><Button variant="outline" disabled={running} onClick={()=>{setProgress(0);setNotice("");setRunning(true);}}>{progress===100?"重新运行":"开始演示任务"}</Button><p className="min-h-5 text-sm text-muted-foreground" role="status">{notice}</p></section></div>
  <div className="grid gap-5 md:grid-cols-2"><Notice title="信息提示">所有组件使用同一套主题变量，业务数据由项目接入。</Notice><Notice tone="success" title="保存成功">你的修改已经应用，可以继续下一步。</Notice><Notice tone="warning" title="即将达到使用限额">剩余容量不足 10%，请检查当前资源分配。</Notice><Notice tone="error" title="连接暂时中断">内容没有丢失，恢复连接后可以重试。</Notice></div>

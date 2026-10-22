@@ -208,4 +208,9 @@ export function Overview() {
 
 ## 扩展资产与页面模板
 
-读取 [design/ASSETS.md](design/ASSETS.md) 获取六个模板、组合组件 API、复制依赖、AI 适配契约和原创动态形象规范。运行 /examples/library.html 查看管理后台、内容中心、AI 对话、设置、组件状态和折光实验室；顶部可查看并复制源码。npm run export:library 导出自包含 HTML 预览。新项目应同时加载本文件与 ASSETS.md，并从最接近业务的模板起步。
+读取 [design/ASSETS.md](design/ASSETS.md) 获取十个模板、组合组件 API、复制依赖、AI 适配契约和原创动态形象规范。运行 /examples/library.html 查看管理后台、内容中心、AI 对话、设置、组件状态和折光实验室；顶部可查看并复制源码。npm run export:library 导出自包含 HTML 预览。新项目应同时加载本文件与 ASSETS.md，并从最接近业务的模板起步。
+
+
+### 精细度不可随复用退化
+
+白色玻璃必须能看见下层光与内容的柔化；黑色亚克力用局部反射表达表面，不能整体抬亮为灰色。复用同时保留边缘高光、接触阴影、刻度、图表端点和行动反馈，不能把不同场景统一成卡片墙。以组件库的材质光影实验、数据分析和任务协作作为补充验收样本；详情见 ASSETS.md 的精细度与场景构图章节。
