@@ -280,12 +280,27 @@
 .crease-workspace.crease-parallax { position:relative; isolation:isolate; background:linear-gradient(115deg,#fff 12%,#f8fcff 52%,#fff 80%); }
 .dark .crease-workspace.crease-parallax { background:#08090b; }
 .crease-scroll-backdrop { position:absolute; inset:0; z-index:-1; overflow:clip; pointer-events:none; }
-.crease-depth-far, .crease-depth-near { position:absolute; inset:-100px 0; }
-.crease-depth-far { background:radial-gradient(ellipse at 86% 25%,#9edfff80,transparent 48%),radial-gradient(ellipse at 35% 80%,#d6f0ff60,transparent 42%); background-size:100% 1000px; }
-.crease-depth-near { background:linear-gradient(120deg,transparent 30%,#ffffff88 30.1%,#ffffff0a 55%,transparent 55.1%),radial-gradient(ellipse at 8% 70%,#d312180b,transparent 32%); background-size:100% 1250px; }
+.crease-depth-far, .crease-depth-near { position:absolute; inset:-100px -6%; transform-origin:center; }
+.crease-depth-far { animation:crease-ambient-drift 22s ease-in-out infinite alternate; background:radial-gradient(ellipse at 86% 25%,#9edfff80,transparent 48%),radial-gradient(ellipse at 35% 80%,#d6f0ff60,transparent 42%); background-size:100% 1000px; }
+.crease-depth-near { animation:crease-reflection-drift 30s ease-in-out -8s infinite alternate; background:linear-gradient(120deg,transparent 30%,#ffffff88 30.1%,#ffffff0a 55%,transparent 55.1%),radial-gradient(ellipse at 8% 70%,#d312180b,transparent 32%); background-size:100% 1250px; }
 .dark .crease-depth-far { background-image:radial-gradient(ellipse at 86% 25%,#5da7d32e,transparent 48%),radial-gradient(ellipse at 35% 80%,#648eae12,transparent 42%); }
 .dark .crease-depth-near { background-image:linear-gradient(120deg,transparent 30%,#bde8ff07 30.1%,#ffffff01 55%,transparent 55.1%),radial-gradient(ellipse at 8% 70%,#d312181a,transparent 32%); }
+/* Independent transform animation composes with the scroll hook's translate. */
+@keyframes crease-ambient-drift {
+  from { transform:translate3d(4%, -24px, 0) scale(1.04); opacity:.72; }
+  to { transform:translate3d(-7%, 48px, 0) scale(1.1); opacity:1; }
+}
+@keyframes crease-reflection-drift {
+  from { transform:translate3d(-3%, 30px, 0); opacity:.6; }
+  to { transform:translate3d(4%, -25px, 0); opacity:1; }
+}
+.crease-workspace:is([data-light-paused="true"], [data-light-hidden="true"]) :is(.crease-depth-far, .crease-depth-near) { animation-play-state:paused; }
+@media(max-width:599px) {
+  .crease-depth-far { animation-duration:28s; }
+  .crease-depth-near { animation-duration:36s; }
+}
 @media(prefers-reduced-motion:reduce) {
+  .crease-depth-far, .crease-depth-near { animation:none; transform:none; opacity:1; }
   [data-background-depth], [data-object-depth] { translate:none !important; }
 }
 
