@@ -26,7 +26,7 @@ export function AdminTemplate() {
     {key:"name",title:"项目名称",sortValue:r=>r.name,render:r=><div className="min-w-40"><span className="font-medium">{r.name}</span><p className="mt-1 text-xs text-muted-foreground">{r.id}</p></div>},
     {key:"owner",title:"负责人",sortValue:r=>r.owner,render:r=>r.owner},
     {key:"status",title:"状态",render:r=><Badge variant={r.status==="进行中"?"default":"outline"}>{r.status}</Badge>},
-    {key:"budget",title:"预算",sortValue:r=>r.budget,render:r=><span className="tabular-nums">¥ {r.budget.toLocaleString()}</span>},
+    {key:"budget",title:"预算",align:"right",sortValue:r=>r.budget,render:r=><span className="tabular-nums">¥ {r.budget.toLocaleString()}</span>},
     {key:"action",title:"详情",render:r=><Button variant="ghost" size="icon" aria-label={"查看"+r.name} onClick={()=>setDetail(r)}><ArrowUpRight /></Button>},
   ];
   const visible=rows.filter(r=>filter==="全部状态"||r.status===filter);
