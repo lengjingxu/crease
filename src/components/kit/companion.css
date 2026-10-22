@@ -1,27 +1,28 @@
-.crease-companion { overflow: visible; }
-.companion-float { transform-origin: 120px 130px; }
-.companion-eyes { transform-origin: 120px 118px; }
-.companion-wave { opacity: 0; }
-.crease-companion[data-state="listening"] .companion-wave,
-.crease-companion[data-state="speaking"] .companion-wave { opacity: 1; }
-.crease-companion:is([data-state="listening"], [data-state="speaking"]) .companion-mouth { opacity: 0; }
-.crease-companion[data-state="sleeping"] .companion-float { transform: rotate(-8deg) translateY(5px); }
-.crease-companion[data-animated="true"] .companion-float { animation: companion-hover 4s ease-in-out infinite; }
-.crease-companion[data-animated="true"][data-state="idle"] .companion-eyes { animation: companion-blink 5.2s ease-in-out infinite; }
-.crease-companion[data-animated="true"][data-state="thinking"] .companion-float { animation: companion-think 2.6s ease-in-out infinite; }
-.crease-companion[data-animated="true"] .companion-wave path { transform-origin: 120px 147px; animation: companion-speak .7s ease-in-out infinite alternate; }
-.crease-companion[data-animated="true"] .companion-orbit { transform-origin: 120px 120px; animation: companion-orbit 5s linear infinite; }
-.crease-companion[data-animated="true"][data-state="success"] .companion-float { animation: companion-nod .65s ease-out 1; }
-.crease-companion[data-animated="true"][data-state="error"] .companion-float { animation: companion-no .5s ease-in-out 1; }
-.crease-companion[data-animated="true"][data-state="sleeping"] .companion-float { animation: none; }
-.crease-companion[data-state="sleeping"] .companion-signal { opacity: .35; }
-@keyframes companion-hover { 50% { transform: translateY(-7px); } }
-@keyframes companion-blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(.12); } }
-@keyframes companion-think { 25% { transform: translateY(-5px) rotate(-4deg); } 75% { transform: translateY(-5px) rotate(4deg); } }
-@keyframes companion-speak { to { transform: scaleY(.35); opacity: .6; } }
-@keyframes companion-orbit { to { transform: rotate(360deg); } }
-@keyframes companion-nod { 35% { transform: translateY(-9px) rotate(-5deg); } 65% { transform: translateY(2px) rotate(3deg); } }
-@keyframes companion-no { 25%,75% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
-@media (prefers-reduced-motion: reduce) {
-  .crease-companion * { animation: none !important; }
+.crease-companion { overflow:visible; }
+.slime-body { transform-origin:120px 180px; }
+.slime-shadow { transform-origin:120px 205px; }
+.slime-contour { transition:d 420ms cubic-bezier(.2,.8,.2,1); }
+.crease-companion .slime-body, .crease-companion .slime-contour, .crease-companion .slime-shadow { animation-play-state:paused; }
+.crease-companion[data-animated="true"] :is(.slime-body,.slime-contour,.slime-shadow) { animation-play-state:running; }
+.crease-companion[data-state="idle"] .slime-body { animation-name:slime-breathe; animation-duration:3.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+.crease-companion[data-state="listening"] .slime-body { animation-name:slime-listen; animation-duration:2s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+.crease-companion[data-state="thinking"] .slime-contour { animation-name:slime-flow; animation-duration:2.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+.crease-companion[data-state="speaking"] .slime-contour { animation-name:slime-wave; animation-duration:1.25s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+.crease-companion[data-state="success"] .slime-body { animation-name:slime-bounce; animation-duration:1.1s; animation-timing-function:cubic-bezier(.25,.7,.3,1); animation-fill-mode:both; }
+.crease-companion[data-state="error"] .slime-body { animation-name:slime-shiver; animation-duration:.85s; animation-timing-function:ease-out; animation-fill-mode:both; }
+.crease-companion[data-state="idle"] .slime-shadow { animation-name:slime-shadow; animation-duration:3.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+@keyframes slime-breathe { 50% { transform:translateY(-5px) scale(.96,1.045); } }
+@keyframes slime-listen { 35% { transform:scale(.94,1.07) skewX(-3deg); } 70% { transform:scale(.98,1.025) skewX(2deg); } }
+@keyframes slime-flow {
+  0%,100% { d:path("M120 57 C157 29 196 70 180 116 C166 149 178 181 127 185 C87 193 39 163 56 124 C71 93 76 65 120 57Z"); }
+  50% { d:path("M120 51 C168 64 180 99 186 129 C201 173 153 193 114 179 C77 166 45 181 51 129 C57 87 80 38 120 51Z"); }
 }
+@keyframes slime-wave {
+  0%,100% { d:path("M120 61 C153 43 192 73 184 117 C206 155 162 182 120 177 C81 195 40 162 57 123 C38 84 82 46 120 61Z"); }
+  45% { d:path("M120 48 C163 56 174 80 183 123 C182 166 152 173 120 187 C77 177 55 158 57 120 C67 80 82 55 120 48Z"); }
+  75% { d:path("M120 66 C154 53 198 85 179 123 C188 156 155 187 120 175 C83 184 39 151 59 119 C44 84 87 49 120 66Z"); }
+}
+@keyframes slime-bounce { 0% { transform:scale(1,1); } 18% { transform:scale(1.2,.77); } 42% { transform:translateY(-26px) scale(.86,1.14); } 64% { transform:scale(1.13,.88); } 80% { transform:translateY(-5px) scale(.97,1.03); } 100% { transform:none; } }
+@keyframes slime-shiver { 20% { transform:translateX(-6px) skewX(7deg) scale(1.06,.94); } 40% { transform:translateX(5px) skewX(-5deg); } 60% { transform:translateX(-3px) skewX(3deg); } 80% { transform:translateX(1px); } 100% { transform:none; } }
+@keyframes slime-shadow { 50% { transform:scaleX(.9); opacity:.7; } }
+@media(prefers-reduced-motion:reduce) { .crease-companion * { animation:none !important; transition:none !important; } }
