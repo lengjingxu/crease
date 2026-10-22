@@ -2,13 +2,17 @@
 
 先读取根目录 [design.md](../design.md)，再选模板。所有模板使用同一份 [crease.css](../src/theme/crease.css)，不依赖历史参考页样式。中文界面、白色玻璃、深黑亚克力、信号红和底层冰蓝环境光保持一致。
 
-## 六个可运行页面
+## 十个可运行页面
 
 运行 npm run dev 后访问 /examples/library.html，通过左侧导航或手机菜单切换。
 
 | 地址后缀 | 模板 | 已实现交互 |
 | --- | --- | --- |
 | #admin | 管理后台 | 指标、状态筛选、搜索、排序、分页、跨页选择、新建、详情、删除确认、CSV 导出 |
+| #analytics | 数据分析 | 周期切换、对比柱图数值、刻度转化环、CSV 报表 |
+| #tasks | 任务协作 | 分栏、搜索、新建、编辑、状态迁移、完成进度 |
+| #files | 文件管理 | 本地导入、类型筛选、搜索、预览、下载、移除确认 |
+| #notifications | 通知中心 | 全部/未读、详情、自动已读、全部已读 |
 | #content | 内容中心 | 文章与图片卡片、搜索、文章阅读、图片放大 |
 | #assistant | AI 对话 | 发送、等待、停止、失败重试、历史清空、模拟失败 |
 | #settings | 偏好设置 | 表单校验、标签页、通知开关、保存反馈 |
@@ -38,7 +42,7 @@
 | kit/content-card.tsx | ArticleCard / ImageCard：文章摘要与阅读动作、图片及打开动作；图片失败显示明确状态 |
 | kit/feedback.tsx | Notice：info/success/warning/error；StatePanel：loading/empty/error；TaskProgress：进度与取消；ConfirmDialog：受控确认框 |
 | kit/chat-panel.tsx | ChatPanel：必传 onReply，可选 demo；纯文本安全显示、AbortSignal 取消 |
-| kit/companion.tsx | Companion：state、animated、size、className；默认不播放动画 |
+| kit/companion.tsx | Companion：state、animated、className；默认不播放动画 |
 
 DataTable 当前为本地五条分页，选择在搜索和分页间保留；删除回调接收选中 ID，实际删除由调用者负责。远程分页应由业务页明确实现服务器契约，不能把本地分页当远程数据接口。ConfirmDialog 的 onConfirm 为同步动作；异步删除应由调用者增加提交中、错误和关闭策略。
 
@@ -71,3 +75,20 @@ src/components/ui/ 包含 shadcn Button、Input、Dialog，以及 Card、Badge�
 运行 npm run export:library，输出 output/portable/examples/library.html。脚本、样式、字体和 SVG 内联，可独立转发预览；源码与文档仍以仓库为准。页面内 GitHub 文档链接需要网络，复制按钮依赖浏览器剪贴板权限。
 
 新增资产需同时检查：320px/390px 手机与桌面、深浅模式、键盘焦点与 Escape、加载/空白/错误、正文对比度、减少动态效果。不要通过把正文缩到 12px 以下或隐藏溢出解决拥挤。表格允许容器内横向滚动，整页不允许横向溢出。主题文件提供统一材质，具体页面仍需版式与交互验收。
+
+
+## 精细度与场景构图 · 2026-10-22
+
+扩展组件不能把原稿简化成等大的圆角卡片。新场景必须有独立构图与至少一个有信息价值的视觉细节：数据分析以对比柱图和转化仪表为中心；任务协作用进度黑板、日程刻度与分栏卡片；文件管理以建筑视觉与文件缩略图组织资源；通知中心使用时间分组、未读刻度和阅读状态。
+
+新增 kit 组件：PageHeading（eyebrow/title/description/actions）、BarChart（data/label/unit）、ProgressRing（value/label/size）、MaterialStudy（独立的材质与光影实验）。BarChart 的数据必须为非负有限数，触控/键盘均可选中柱形读取精确数值；ProgressRing 将进度限制到 0–100。
+
+MaterialStudy 使用真实 backdrop-filter，红色路径和冰蓝光位于玻璃下方。环境光强度可调，光影播放由用户主动开启并可暂停；不依赖 WebGL、远程图片或额外动画库。动画在减少动态效果设置下停止。它不是生成图片，可直接复用组件和主题样式。
+
+crease.css 中的 crease-workspace 是产品画布：提供局部环境光、玻璃边缘和黑色反射。WorkspaceShell 已使用此类；独立项目若不用布局壳，应自行在页面根部添加 crease-canvas crease-workspace。主题包含 crease-instrument（仪表反射）、crease-optical（透光层）、crease-lift（轻悬浮）、crease-image-frame（图像边缘）、crease-ticks（刻度）及入场/图表动效。不要给所有容器都加装饰，重点模块与安静区域必须同时存在。
+
+悬停反馈仅在精细指针设备启用；按下 160ms、悬停 220ms、首次入场 420ms、图表描画 650–850ms。高频操作不等待动画结束。减少动态效果时关闭位移动画。光源与卡片本身分层，禁止用整体降低文字 opacity 伪造玻璃。
+
+文件模板仅接受 PNG/JPG/WebP/TXT/MD，每个文件不超过 10 MB；不上传，离开页面释放 Object URL。初始 SVG 是受信任的项目原创资源，不接受用户 SVG。文件删除只改变本地列表，下载为实际浏览器下载。通知和任务也仅使用内存状态，不能宣称已写入外部服务。
+
+视觉验收不能仅检查功能和溢出：需查看真实桌面与手机截图，检查高光/接触阴影是否区分层级、重点黑色是否够黑、红色是否承担引导、中文字是否清晰、图表是否有单位与读数；再在正常/减少动态两种模式验证动作。新增页面不以数量作为完成标准。
