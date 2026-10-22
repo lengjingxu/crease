@@ -54,17 +54,17 @@ src/components/ui/ 包含 shadcn Button、Input、Dialog，以及 Card、Badge�
 
 ## 折光 · ZHÉ
 
-原创 SVG 与 CSS，白色折面外壳、黑玻璃面罩、红色信号及冰蓝边缘。无需 Canvas、WebGL 或图片请求。渐变 ID 及聊天输入 ID 支持同页多实例。
+原创 SVG 与 CSS，无五官的白色柔软凝胶体，冰蓝边缘与局部暗部表达体积，告警时身体泛红。无需 Canvas、WebGL 或图片请求。渐变 ID 及聊天输入 ID 支持同页多实例。
 
 | state | 含义 | 动作 |
 | --- | --- | --- |
-| idle | 待命 | 轻浮动、眨眼 |
-| listening | 倾听 | 输入波形 |
-| thinking | 思考 | 轻倾斜、轨道运动 |
-| speaking | 回应 | 输出波形 |
-| success | 完成 | 一次点头 |
-| error | 需要协助 | 一次轻摇 |
-| sleeping | 休息 | 静止 |
+| idle | 待命 | 轻微呼吸与体积交换 |
+| listening | 倾听 | 收窄、向上拉伸与侧倾 |
+| thinking | 思考 | 不对称轮廓持续流动 |
+| speaking | 回应 | 身体边缘柔性波动 |
+| success | 完成 | 压缩、弹起、落地回弹一次 |
+| error | 需要协助 | 收紧、短暂轻颤一次，身体泛红 |
+| sleeping | 休息 | 扁平低伏，静止 |
 
 持续动画必须提供暂停入口；系统 prefers-reduced-motion 时停用动画。状态始终同时有文字，不能只靠动作表达进度。完成/错误重播需重新挂载（例如修改 key）。应用内默认 animated=false，实验页显式启用动画。
 
@@ -98,3 +98,5 @@ crease.css 中的 crease-workspace 是产品画布：提供局部环境光、玻
 WorkspaceShell 已接入 use-scroll-depth.ts。复制布局壳时需同时复制此 hook 与 crease.css。远景冰蓝光以正文 35% 的速度滚动，中景反射以 70% 的速度滚动，内容保持原生 100% 滚动；不劫持滚轮、不改变正文和按钮的位置。材质实验中的黑色板、透镜与玻璃板使用不同局部位移，最大 36px；独立 translate 属性与原有旋转、播放动画互不覆盖。
 
 手机触控滚动同样启用。prefers-reduced-motion 改变时即时清除偏移并解绑滚动监听；路由切换和卸载会取消待执行帧。每次滚动最多安排一个 requestAnimationFrame，仅修改装饰层，不触发 React 重渲染。背景单独裁切，不在侧栏祖先上设置 overflow:hidden，以保留 sticky 导航。顶部“滚动视差”源码项可直接复制 hook。
+
+抽象形象不使用眼睛、嘴、天线或机械外壳。轮廓以同拓扑 SVG 曲线变形，完成和告警用压缩回弹表达；暂停冻结当前动作而非重置。CSS 路径形变仅用于单个小型 SVG，不应用于页面大面积滤镜。减少动态效果时保留每种状态的静态轮廓。
