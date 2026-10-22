@@ -31,10 +31,10 @@
   animation: studio-enter 200ms ease-out;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 1.8px;
-  color: #74767b;
+  color: #555b63;
   line-height: 1.5;
 }
 .page-heading {
@@ -56,8 +56,8 @@
   margin-left: 4px;
 }
 .page-heading > div > p:last-child {
-  font-size: 12px;
-  color: #85878d;
+  font-size: 14px;
+  color: #555b63;
   line-height: 1.8;
 }
 .heading-actions {
@@ -67,7 +67,7 @@
   flex-shrink: 0;
 }
 .studio [data-slot="button"] {
-  font-size: 11px;
+  font-size: 14px;
   border-radius: 8px;
   height: 36px;
   padding-inline: 14px;
@@ -89,7 +89,7 @@
   gap: 10px;
 }
 .panel-heading h2 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 }
 .dark-glass {
@@ -107,7 +107,7 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.7px;
 }
 .site-footer > span:first-child {
@@ -127,8 +127,8 @@
 .empty-state {
   padding: 35px 10px;
   text-align: center;
-  color: #888;
-  font-size: 12px;
+  color: #555b63;
+  font-size: 14px;
 }
 .studio-dialog {
   border-radius: 18px;
@@ -138,7 +138,7 @@
   gap: 8px;
   align-items: center;
   padding: 12px 20px;
-  font-size: 12px;
+  font-size: 14px;
   background: #f4f4f4;
 }
 .skip-link {
@@ -168,7 +168,7 @@
   font-weight: 600;
 }
 .system-hero h2 > span {
-  color: #7e828a;
+  color: #555b63;
   position: relative;
 }
 .system-hero h2 > span:after {
@@ -181,8 +181,8 @@
   bottom: -8px;
 }
 .system-hero > div > p:last-child {
-  font-size: 11px;
-  color: #93979d;
+  font-size: 14px;
+  color: #555b63;
   margin-top: 27px;
 }
 .material-study {
@@ -231,7 +231,7 @@
   padding: 20px;
 }
 .study-black span {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.8;
   letter-spacing: 2px;
   color: #c9cdd3;
@@ -260,8 +260,8 @@
   position: absolute;
   right: 10px;
   bottom: 0;
-  font-size: 8px;
-  color: #a2a6ad;
+  font-size: 12px;
+  color: #555b63;
   letter-spacing: 2px;
 }
 .system-grid {
@@ -296,17 +296,17 @@
 .swatches strong,
 .swatches small {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 .swatches small {
-  font-size: 9px;
+  font-size: 12px;
   margin-top: 4px;
-  color: #8d929b;
+  color: #555b63;
 }
 .swatches p {
-  font-size: 9px;
-  color: #8d929b;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 10px;
 }
 .type-spec {
@@ -326,13 +326,13 @@
 }
 .type-spec p,
 .type-spec small {
-  font-size: 10px;
-  color: #8f949c;
+  font-size: 12px;
+  color: #555b63;
   margin-top: 5px;
 }
 .type-spec small {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1px;
 }
 .type-sample {
@@ -342,8 +342,8 @@
   font-size: 23px;
 }
 .type-sample small {
-  font-size: 9px;
-  color: #999;
+  font-size: 12px;
+  color: #555b63;
   margin-left: 14px;
 }
 .button-spec {
@@ -353,9 +353,9 @@
   margin-top: 28px;
 }
 .spec-note {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.9;
-  color: #8d939b;
+  color: #555b63;
   margin-top: 21px;
 }
 .reference-links {
@@ -367,7 +367,7 @@
   justify-content: space-between;
   padding: 13px 0;
   border-bottom: 1px solid #eee;
-  font-size: 11px;
+  font-size: 14px;
 }
 .reference-links a:last-child {
   border: 0;
@@ -378,7 +378,7 @@
   gap: 10px;
 }
 .reference-links a > svg {
-  color: #91969e;
+  color: #555b63;
 }
 @keyframes studio-enter {
   from {
@@ -416,7 +416,7 @@
     font-size: 28px;
   }
   .page-heading > div > p:last-child {
-    font-size: 11px;
+    font-size: 14px;
   }
   .heading-actions {
     padding: 0;
@@ -425,7 +425,7 @@
     padding: 22px;
   }
   .site-footer {
-    font-size: 7px;
+    font-size: 12px;
   }
   .footer-number {
     display: none;
@@ -441,7 +441,7 @@
     font-size: 40px;
   }
   .site-footer {
-    font-size: 6px;
+    font-size: 12px;
   }
   .button-spec {
     gap: 6px;
