@@ -1,0 +1,27 @@
+.crease-companion { overflow: visible; }
+.companion-float { transform-origin: 120px 130px; }
+.companion-eyes { transform-origin: 120px 118px; }
+.companion-wave { opacity: 0; }
+.crease-companion[data-state="listening"] .companion-wave,
+.crease-companion[data-state="speaking"] .companion-wave { opacity: 1; }
+.crease-companion:is([data-state="listening"], [data-state="speaking"]) .companion-mouth { opacity: 0; }
+.crease-companion[data-state="sleeping"] .companion-float { transform: rotate(-8deg) translateY(5px); }
+.crease-companion[data-animated="true"] .companion-float { animation: companion-hover 4s ease-in-out infinite; }
+.crease-companion[data-animated="true"][data-state="idle"] .companion-eyes { animation: companion-blink 5.2s ease-in-out infinite; }
+.crease-companion[data-animated="true"][data-state="thinking"] .companion-float { animation: companion-think 2.6s ease-in-out infinite; }
+.crease-companion[data-animated="true"] .companion-wave path { transform-origin: 120px 147px; animation: companion-speak .7s ease-in-out infinite alternate; }
+.crease-companion[data-animated="true"] .companion-orbit { transform-origin: 120px 120px; animation: companion-orbit 5s linear infinite; }
+.crease-companion[data-animated="true"][data-state="success"] .companion-float { animation: companion-nod .65s ease-out 1; }
+.crease-companion[data-animated="true"][data-state="error"] .companion-float { animation: companion-no .5s ease-in-out 1; }
+.crease-companion[data-animated="true"][data-state="sleeping"] .companion-float { animation: none; }
+.crease-companion[data-state="sleeping"] .companion-signal { opacity: .35; }
+@keyframes companion-hover { 50% { transform: translateY(-7px); } }
+@keyframes companion-blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(.12); } }
+@keyframes companion-think { 25% { transform: translateY(-5px) rotate(-4deg); } 75% { transform: translateY(-5px) rotate(4deg); } }
+@keyframes companion-speak { to { transform: scaleY(.35); opacity: .6; } }
+@keyframes companion-orbit { to { transform: rotate(360deg); } }
+@keyframes companion-nod { 35% { transform: translateY(-9px) rotate(-5deg); } 65% { transform: translateY(2px) rotate(3deg); } }
+@keyframes companion-no { 25%,75% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) {
+  .crease-companion * { animation: none !important; }
+}

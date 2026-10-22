@@ -52,3 +52,13 @@ React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 
 原主题的视觉方法来自 Mirror’s Edge，而非游戏素材：白色环境、必要体块、红色引导。原主题标志和 public/sources/red-line.svg 保留；没有引入游戏截图、角色或官方宣传图。
 
 原主题来源：https://bloom-gem-crane-flame.grok.me
+
+## 扩展组件库
+
+访问 **/examples/library.html**：管理后台、内容中心、AI 对话、偏好设置、组件与状态、原创动态形象「折光」。包含实际 shadcn 基础组件和可复制组合组件，参见 [设计资产说明](design/ASSETS.md)。全部中文，支持深浅模式和手机布局。
+
+~~~sh
+npm run export:library
+~~~
+
+生成自包含预览 output/portable/examples/library.html，可单文件转发；样式、脚本、字体、SVG 全部内联。业务为本地演示，AI 不连接外部模型。源码在 src/components/kit/ 与 src/templates/，复制方式见资产说明。

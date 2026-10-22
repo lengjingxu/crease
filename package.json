@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "export:library": "vite build --config vite.single.config.ts"
   },
   "dependencies": {
     "@fontsource/outfit": "^5.2.0",
@@ -28,6 +29,7 @@
     "tailwindcss": "^4.1.0",
     "tw-animate-css": "^1.3.0",
     "typescript": "~5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-singlefile": "^2.3.4"
   }
 }
