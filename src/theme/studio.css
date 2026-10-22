@@ -93,7 +93,7 @@
   font-weight: 500;
 }
 .dark-glass {
-  background: linear-gradient(125deg, #35373be6, #181a1eef 48%, #101115f5);
+  background: linear-gradient(125deg, #161617f2, #050506f5 48%, #000000fa);
   border: 1px solid #5c5d6155;
   color: #fff;
   box-shadow:
@@ -199,7 +199,7 @@
   transform: rotate(-15deg) skewY(8deg);
   border: 1px solid #e2e5e9;
   border-radius: 18px;
-  background: linear-gradient(135deg, #fff, #e6e8eb);
+  background: linear-gradient(135deg, #fff, #ffffff60);
   box-shadow: 12px 25px 30px #10182708;
 }
 .study-glass {
@@ -242,7 +242,7 @@
   left: 30px;
   top: 175px;
   width: 330px;
-  height: 1px;
+  height: 8px;
   background: var(--signal);
   transform: rotate(-15deg);
 }
