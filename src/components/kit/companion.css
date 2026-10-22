@@ -2,8 +2,8 @@
 .slime-body { transform-origin:120px 180px; }
 .slime-shadow { transform-origin:120px 205px; }
 .slime-contour { transition:d 420ms cubic-bezier(.2,.8,.2,1); }
-.crease-companion .slime-body, .crease-companion .slime-contour, .crease-companion .slime-shadow { animation-play-state:paused; }
-.crease-companion[data-animated="true"] :is(.slime-body,.slime-contour,.slime-shadow) { animation-play-state:running; }
+.crease-companion .slime-body, .crease-companion .slime-contour, .crease-companion .slime-shadow, .crease-companion .slime-gaze, .crease-companion .slime-eyes { animation-play-state:paused; }
+.crease-companion[data-animated="true"] :is(.slime-body,.slime-contour,.slime-shadow,.slime-gaze,.slime-eyes) { animation-play-state:running; }
 .crease-companion[data-state="idle"] .slime-body { animation-name:slime-breathe; animation-duration:3.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
 .crease-companion[data-state="listening"] .slime-body { animation-name:slime-listen; animation-duration:2s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
 .crease-companion[data-state="thinking"] .slime-contour { animation-name:slime-flow; animation-duration:2.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
@@ -26,3 +26,9 @@
 @keyframes slime-shiver { 20% { transform:translateX(-6px) skewX(7deg) scale(1.06,.94); } 40% { transform:translateX(5px) skewX(-5deg); } 60% { transform:translateX(-3px) skewX(3deg); } 80% { transform:translateX(1px); } 100% { transform:none; } }
 @keyframes slime-shadow { 50% { transform:scaleX(.9); opacity:.7; } }
 @media(prefers-reduced-motion:reduce) { .crease-companion * { animation:none !important; transition:none !important; } }
+
+.slime-eyes { transform-origin:120px 121px; }
+.crease-companion:is([data-state="idle"],[data-state="listening"],[data-state="speaking"]) .slime-eyes { animation-name:slime-blink; animation-duration:4.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+.crease-companion[data-state="thinking"] .slime-gaze { animation-name:slime-glance; animation-duration:2.8s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+@keyframes slime-blink { 0%,43%,48%,100% { transform:scaleY(1); } 45%,46% { transform:scaleY(.12); } }
+@keyframes slime-glance { 50% { transform:translate(3px,-2px); } }
