@@ -26,7 +26,7 @@
 1. 在 React + TypeScript + Tailwind v4 项目中设置 @/ 指向 src/。
 2. 复制 src/theme/crease.css，在应用入口导入一次；配置 @tailwindcss/vite 与 tw-animate-css。
 3. 复制 src/lib/utils.ts、需要的 src/components/ui/ 文件及对应 kit 文件。安装 react、react-dom、radix-ui、lucide-react、class-variance-authority、clsx、tailwind-merge；版本以根 package.json 为准。
-4. 页面根部使用 crease-canvas。玻璃容器使用 crease-glass，重点黑色区域使用 crease-ink。深色模式由祖先 .dark 控制。
+4. 静态页面根部使用 crease-canvas；需要当前模板的流光、视差和播放控制时，复制 WorkspaceShell 与 use-scroll-depth.ts 及其 imports，仅复制 CSS 不足以启用这些行为。玻璃容器使用 crease-glass，重点黑色区域使用 crease-ink。全局深色模式将 .dark 放在 html 上，保证 portal 弹窗也继承。
 5. 复制所选 src/templates/ 文件和它直接导入的组件；内容模板还需 src/assets/ 三张原创 SVG。Companion 必须连同 companion.css 复制。
 6. Outfit / Syne 为可选本地拉丁字体；中文由主题自托管 Noto Sans SC Variable，需安装 @fontsource-variable/noto-sans-sc；排版角色见 design.md。如使用 examples/library.tsx 的完整入口，同时安装 @fontsource/outfit 和 @fontsource/syne。
 
@@ -36,9 +36,9 @@
 
 | 文件 | 导出与主要参数 |
 | --- | --- |
-| kit/workspace-shell.tsx | WorkspaceShell：nav、active、onNavigate、actions、children；桌面侧栏与移动导航 |
+| kit/workspace-shell.tsx | WorkspaceShell：nav、active、onNavigate、actions、children；桌面侧栏、移动导航、背景流光播放控制与滚动视差 |
 | kit/metric-card.tsx | MetricCard：label、value、unit、change、detail、trend、emphasis；Sparkline 可独立使用 |
-| kit/data-table.tsx | DataTable：rows（唯一 id）、columns、searchText、label、onDelete、state、onRetry；列用 render 定义内容，sortValue 启用排序 |
+| kit/data-table.tsx | DataTable：rows（唯一 id）、columns、searchText、label、onDelete、state、onRetry；列用 render 定义内容，sortValue 启用排序；align: "right" 对齐数值列 |
 | kit/content-card.tsx | ArticleCard / ImageCard：文章摘要与阅读动作、图片及打开动作；图片失败显示明确状态 |
 | kit/feedback.tsx | Notice：info/success/warning/error；StatePanel：loading/empty/error；TaskProgress：进度与取消；ConfirmDialog：受控确认框 |
 | kit/chat-panel.tsx | ChatPanel：必传 onReply，可选 demo；纯文本安全显示、AbortSignal 取消 |
@@ -68,6 +68,10 @@ src/components/ui/ 包含 shadcn Button、Input、Dialog，以及 Card、Badge�
 
 持续动画必须提供暂停入口；系统 prefers-reduced-motion 时停用动画。状态始终同时有文字，不能只靠动作表达进度。完成/错误重播需重新挂载（例如修改 key）。应用内默认 animated=false，实验页显式启用动画。
 
+### 形象细节
+
+抽象形象只使用两枚极简眼点，不使用嘴、面罩、天线或机械外壳。轮廓以同拓扑 SVG 曲线变形，完成和告警用压缩回弹表达；暂停冻结当前动作而非重置。CSS 路径形变仅用于单个小型 SVG，不应用于页面大面积滤镜。减少动态效果时保留每种状态的静态轮廓。眼点随身体运动，待命轻眨、思考微移、完成微弯、告警收紧、休息闭合；暂停与减少动态效果同样控制眼部动画。
+
 动作组织参考 [iduu/grokbot-animation](https://github.com/iduu/grokbot-animation)。该项目无明确开放许可，因此这里只参考持续状态/一次性动作的组织方式，未复制角色轮廓、素材或实现。src/assets 的庭院、红桥和折面也是本项目代码绘制的原创 SVG；它们与 design/references 的第三方研究稿件分开。
 
 ## 单文件预览与验收
@@ -93,13 +97,15 @@ crease.css 中的 crease-workspace 是产品画布：提供局部环境光、玻
 
 视觉验收不能仅检查功能和溢出：需查看真实桌面与手机截图，检查高光/接触阴影是否区分层级、重点黑色是否够黑、红色是否承担引导、中文字是否清晰、图表是否有单位与读数；再在正常/减少动态两种模式验证动作。新增页面不以数量作为完成标准。
 
+## 流光与视差的接入边界
+
+流光规则集中在 [design.md 的背景流光](../design.md#背景流光)。WorkspaceShell 默认播放背景光，可暂停并处理页面可见性；MaterialStudy 的局部光影与 Companion 的身体动画有各自独立开关。不要把三个开关合并成含义不明的“全部动画”，也不要仅加入 crease-workspace 类就声称流光控制与视差已接入。
+
 ## 滚动视差
 
-WorkspaceShell 已接入 use-scroll-depth.ts。复制布局壳时需同时复制此 hook 与 crease.css。远景冰蓝光以正文 35% 的速度滚动，中景反射以 70% 的速度滚动，内容保持原生 100% 滚动；不劫持滚轮、不改变正文和按钮的位置。材质实验中的黑色板、透镜与玻璃板使用不同局部位移，最大 36px；独立 translate 属性与原有旋转、播放动画互不覆盖。
+WorkspaceShell 已接入 use-scroll-depth.ts。复制布局壳时需同时复制此 hook 与 crease.css。远景冰蓝光以正文 35% 的速度滚动，中景反射以 70% 的速度滚动，内容保持原生 100% 滚动。data-background-depth 的 0.65 / 0.3 是向下补偿的位移倍率，不是视觉滚动速率；实际速率为 1 减去该倍率。不劫持滚轮、不改变正文和按钮的位置。材质实验中的黑色板、透镜与玻璃板使用不同局部位移，最大 36px；独立 translate 属性与原有旋转、播放动画互不覆盖。
 
 手机触控滚动同样启用。prefers-reduced-motion 改变时即时清除偏移并解绑滚动监听；路由切换和卸载会取消待执行帧。每次滚动最多安排一个 requestAnimationFrame，仅修改装饰层，不触发 React 重渲染。背景单独裁切，不在侧栏祖先上设置 overflow:hidden，以保留 sticky 导航。顶部“滚动视差”源码项可直接复制 hook。
-
-抽象形象只使用两枚极简眼点，不使用嘴、面罩、天线或机械外壳。轮廓以同拓扑 SVG 曲线变形，完成和告警用压缩回弹表达；暂停冻结当前动作而非重置。CSS 路径形变仅用于单个小型 SVG，不应用于页面大面积滤镜。减少动态效果时保留每种状态的静态轮廓。眼点随身体运动，待命轻眨、思考微移、完成微弯、告警收紧、休息闭合；暂停与减少动态效果同样控制眼部动画。
 
 ### 控件精修
 

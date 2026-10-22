@@ -1,6 +1,25 @@
-# CREASE 设计标准 · 1.0
+# CREASE 设计标准 · Agent 执行版
 
-这是新项目的设计与实现约束。**先读本文，再使用 [src/theme/crease.css](src/theme/crease.css)，最后对照 [独立示例](examples/theme.tsx) 验收。** 主题定义视觉语言，不代替业务信息架构、版式设计和交互设计；加载文件不等于自动达到成稿质量。
+更新日期：2026-10-22。
+
+这是本仓库及新项目的设计与实现约束。**先读本文，再使用 [src/theme/crease.css](src/theme/crease.css)，最后对照 [独立示例](examples/theme.tsx) 验收。** 主题定义视觉语言，不代替业务信息架构、版式设计和交互设计；加载文件不等于自动达到成稿质量。
+
+## 接手顺序与当前基线
+
+1. 在本仓库先读 [AGENTS.md](AGENTS.md)，再按本文执行；迁移到新项目时保留本文与 [资产说明](design/ASSETS.md)，把读取要求写入目标项目的 Agent 入口。
+2. 以 /examples/library.html 为当前产品模板基线，查看本次要修改的场景；/examples/theme.html 只验证最小主题接入。根入口的参考研究页用于构图与细节比较，不是十个模板的布局壳。
+3. 在修改前后用同页面、同视口、同明暗模式、同交互状态作对照；比较动画时暂停到可复现相位。保留本次相关截图与实际行为结果。
+4. 参数与实现不一致时，先检查下表对应源码，说明差异并同步修正文档；不要把旧文案当成已实现功能。用户新反馈优先于历史研究档案。
+
+| 本次工作 | 必须核对的实现 | 设计要求所在章节 |
+| --- | --- | --- |
+| 配色、玻璃、中文排版 | src/theme/crease.css、受影响的组件 | 语义颜色、材质、字体与阅读 |
+| 刻字、按钮、表单与弹窗 | crease.css、src/components/ui/ | 控件细节与层次、亚克力刻字 |
+| 流光与视差 | kit/workspace-shell.tsx、kit/use-scroll-depth.ts、crease.css | 背景流光；ASSETS.md 的滚动视差 |
+| 动态形象 | kit/companion.tsx、kit/companion.css | ASSETS.md 的折光规范 |
+| 新业务场景 | src/templates/ 中最接近的模板 | 布局与信息密度；ASSETS.md 的场景构图 |
+
+上表 kit/ 路径均位于 src/components/。目标是保持参考稿级别的构图与细节，沿用 CREASE 配色；不能把“更多页面”或“主题文件已接入”当作质量证据。
 
 ## 交付物与适用范围
 
@@ -9,7 +28,9 @@
 | src/theme/crease.css | 唯一可迁移主题入口：Tailwind v4、shadcn 完整语义变量、浅/深色、字体栈、圆角、玻璃与环境光工具类 |
 | examples/theme.tsx | 不依赖参考页 CSS、图片或业务数据的 React + shadcn 示例；可复制到新项目修改 |
 | examples/theme.html | 独立入口，运行后访问 /examples/theme.html |
-| design.md | 新项目的设计规则、实现流程和验收标准 |
+| design.md | 本仓库与新项目的设计规则、实现流程和验收标准 |
+| AGENTS.md | 本仓库 Agent 的读取顺序、完成标准与提交流程 |
+| design/ASSETS.md | 十个模板、组件 API、复制依赖与动态形象规范 |
 | design/DIRECTION.md | 本次三张参考稿的分析、来源与取舍，属于研究档案 |
 
 可迁移栈：React、TypeScript、Tailwind CSS **v4**、shadcn/ui。crease.css 含 Tailwind 指令，必须经过 Tailwind 构建，不可作为普通 CSS 用 link 直接加载。不要混用 v3 的 @tailwind 指令或 HSL 三元组变量写法。
@@ -63,14 +84,24 @@ src/styles.css、src/theme/references.css、src/theme/studio.css 是本仓库的
 
 材料工具类不包含宽高、圆角和 padding，让布局按场景决定。高频滚动列表只在外层使用一次玻璃，避免每行都创建 backdrop blur。模糊不能抹到内容层：禁止对卡片本身使用 filter: blur()。
 
-调光只改 --crease-ambient；材质只改 --crease-glass、--crease-ink、--crease-glass-shadow 等主题变量。不要每页复制新渐变。浅/深模式分别有环境光与玻璃参数。
+静态 crease-canvas 的光场由 --crease-ambient / --crease-reflection 控制；WorkspaceShell 的流光由 crease-depth-far / crease-depth-near 的背景及动画控制，不能只改静态变量就声称工作区流光已更新。材质改 --crease-glass、--crease-ink、--crease-glass-shadow 等主题变量，所有改动集中在 crease.css；浅/深模式分别核对。工作区会局部调整白玻璃配方，不能把基础工具类的透明度范围当成所有场景的固定值。
+
+## 背景流光
+
+WorkspaceShell 的冰蓝远光与近层反射单程分别为 22 秒、30 秒，完整往返为 44 秒、60 秒，近层错开 8 秒起始相位。渐变画好后只动画 transform 与 opacity，不逐帧修改模糊半径或触发 React 渲染。光位于正文和玻璃下方，容器裁切溢出且不接收指针事件。
+
+流光 transform 与滚动视差 translate 独立叠加：页面不滚动时也有缓慢光变，滚动仍保留远近层速差。手机延长周期至 28 / 36 秒。工具栏可暂停/恢复流光，暂停保持当前相位；切换模板保留暂停状态。页面隐藏时暂停，回到前台按用户的播放状态恢复。系统启用减少动态效果时显示静态光场，并隐藏流光开关。
+
+复制 CSS 不会创建背景 DOM、工具栏控制或滚动监听。完整接入应复制 WorkspaceShell、use-scroll-depth.ts 及其导入的基础组件；自建布局需显式实现同等结构与行为并验证。仅使用 crease-canvas 是静态主题接入。流光开关、MaterialStudy 的局部光影开关和 Companion 的动画开关各自独立。
+
+视差倍率、位移边界与监听清理要求见 [ASSETS.md 的滚动视差](design/ASSETS.md#滚动视差)。
 
 ## 字体与阅读
 
 - 拉丁正文/数字：Outfit 400/500。拉丁品牌标题：Syne 600。中文统一使用自托管 Noto Sans SC Variable（思源黑体字形），由主题 CSS 导入；支持 100–900 连续字重，避免不同设备依赖不同中文字体。Outfit 与 Syne 不提供中文字形。
 - 正文段落：16px / 1.85（crease-body）；长文使用 crease-prose，行高 1.9、段间距 1.25em、行宽不超过 38em。密集界面的普通文案、控件、表格：14px / 至少 1.5（text-sm leading-6）。
 - 次级说明与图表刻度：**不得低于 12px**（crease-caption / text-xs），重要操作不能用 12px。
-- 主标题 32–48px，章节 20–24px，卡片标题 16–20px。手机标题相应减小，但不压缩正文。
+- 产品页面主标题采用 crease-title 的 28–36px，章节 20–24px，卡片标题 16–20px；参考研究页的大型展示标题按构图单独验收。手机不压缩正文。
 - 普通正文至少 4.5:1，大字和有意义的图形边界至少 3:1；玻璃按实际合成背景检查，不能只检查纯白底色值。
 - 深黑卡上的正文保持白色，说明用浅灰。不要给整个已完成行加低 opacity 让文字消失；用复选框、删除线与标签表达状态。
 - 输入框在手机上采用 16px 字号，避免浏览器自动缩放；触控目标至少 44px。
@@ -87,7 +118,7 @@ src/styles.css、src/theme/references.css、src/theme/studio.css 是本仓库的
 | crease-caption | 12px / 400 / 1.75 | 时间、辅助说明 |
 | crease-eyebrow | 12px / 500 / 1.75 | 短章节引导，0.1em 字距 |
 
-中文标题禁止套用 tracking-tight/tighter 与 leading-none；不要用细字重或降低透明度制造精致感。控件保持 500、标题 550，正文 400；字重用真实可变字形，主题关闭合成粗体。段落采用严格中文禁则与自然换行，不手工插空格撑开汉字。数值继续使用 tabular-nums，紧字距仅用于纯数字/拉丁展示。中英文之间按语义留正常空格。
+中文标题禁止套用 tracking-tight/tighter 与 leading-none；不要用细字重或降低透明度制造精致感。普通控件 500、标题 550、正文 400；已选中控件及主按钮的 600 字重按「亚克力刻字」规则使用；字重用真实可变字形，主题关闭合成粗体。段落采用严格中文禁则与自然换行，不手工插空格撑开汉字。数值继续使用 tabular-nums，紧字距仅用于纯数字/拉丁展示。中英文之间按语义留正常空格。
 
 字体随构建自托管，不请求 Google Fonts；常规页面按 unicode-range 加载需要的分片。单文件导出会内嵌完整字体（约增加 6 MB），保证离线预览中文字形一致。组件实验室内有浅色/黑色材质中文样张，可用于后续项目验收。
 
@@ -113,6 +144,26 @@ src/styles.css、src/theme/references.css、src/theme/studio.css 是本仓库的
 | 图表 | 只突出关键系列/当前数据；标明单位、时间范围、空状态。浅蓝环境光不能作为数据语义。 |
 
 交互反馈 150–200ms，优先 opacity/transform；尊重 reduced-motion。需要 loading、empty、error、disabled 时必须设计真实状态，不能写死永远成功的界面。图标按钮必须有中文 accessible name。
+
+## 控件细节与层次
+
+- 分为三层：玻璃内容面板、轻微内凹的输入框、带边缘反光的操作按钮。输入底色与内阴影由 --crease-control / --crease-control-shadow 控制；深色模式单独定义，不能复用白色高光。
+- 输入框、Textarea、Select 共用一个 2px 红色焦点轮廓，不叠加粗光晕。错误保留 destructive 边框，禁用与悬停不能覆盖错误语义。字段标签与输入保持真实 8px 间距。
+- Tabs 选中项使用清晰文字、微高光、短红标记；键盘焦点另行保留。未选中文字使用 muted-foreground，禁止把文字 opacity 降到难以阅读。
+- 数据表格外层使用 crease-data-table：轻表头、细行分隔，选中行带浅红底与左侧红边。金额列声明 align: "right"，同时作用于列标题、排序按钮及单元格。分页说明当前记录范围。
+- Dialog 内容保持不透明以便阅读，边缘与投影负责层级；背景遮罩做 5px 模糊。关闭按钮至少 44px；弹窗高度不超过视口减 32px，内容超出时内部滚动。关闭后焦点返回打开弹窗的控件；自定义 onCloseAutoFocus 可覆盖这一行为。
+- 控件反馈限于颜色、阴影、transform，时长 150–180ms；弹窗退出 120ms。仅精细指针开启悬停位移；减少动态效果时取消位移和过渡。Tooltip 首次悬停等待 350ms，避免移动鼠标时不断闪现。
+
+## 亚克力刻字
+
+标题与选中状态使用浅刻字：上缘暗切线、下缘反射光，保留不透明字形和原有语义文字色。它是 CSS text-shadow 的视觉模拟，不是真实三维凹槽。
+
+- crease-title 自动带标题刻字；局部标题可添加 crease-engraved-title，短标签可添加 crease-engraved。工具类只改变文字光影，不修改背景、布局或正文颜色。
+- Tabs 选中项、aria-pressed="true" 的 Button 自动添加刻字，字重 600。主按钮与当前导航采用适合红色亚克力的暗红切边；普通标题保持 550。
+- 白玻璃、全局 dark、局部 crease-ink 分别继承 --crease-etch / --crease-etch-title。刻字类放在材质容器内部，避免在业务页写死白色高光。
+- 控件的光影偏移约 1px，标题最多约 2px；不使用模糊发光、透明文字、粗描边、重复文字图层。正文、说明、未选中控件不叠加刻字。
+- 高对比与强制颜色模式关闭文字阴影，保留原有文字与状态标记。组件实验室的「文字与材质」提供浅色玻璃、黑色亚克力的对照样张。
+
 
 ## 新项目接入
 
@@ -165,12 +216,12 @@ export function Overview() {
     <main className="crease-canvas min-h-dvh p-4 sm:p-10">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.6fr_1fr]">
         <section className="crease-glass rounded-2xl p-6 sm:p-8">
-          <h1 className="text-3xl font-medium">项目概览</h1>
+          <h1 className="crease-title">项目概览</h1>
           <p className="crease-body mt-4 text-muted-foreground">让目标、进度与下一步清楚可见。</p>
           <Button className="mt-6 min-h-11">创建项目</Button>
         </section>
         <aside className="crease-ink rounded-2xl p-6 sm:p-8">
-          <h2 className="text-xl">本周目标</h2>
+          <h2 className="crease-heading crease-engraved-title">本周目标</h2>
           <p className="mt-4 text-sm leading-7 text-muted-foreground">深色材料中的说明保持清楚可读。</p>
         </aside>
       </div>
@@ -186,8 +237,8 @@ export function Overview() {
 把 design.md 放到目标项目根目录，并在项目 AGENTS.md 中明确引用：
 
 ~~~md
-所有界面工作开始前读取 ./design.md。
-使用 src/theme/crease.css 作为唯一主题来源，使用现有 shadcn 组件。
+所有界面工作开始前读取 ./design.md；复用模板、视差、流光或形象时同时读取 ./design/ASSETS.md 的对应章节。
+使用 src/theme/crease.css 作为唯一主题来源，使用现有 shadcn 组件；保留材质、中文排版与动效细节。
 必须在真实内容、手机与桌面视口中验收；不能仅凭代码中存在 token 宣称设计完成。
 用户的新反馈优先，同步更新设计规范与主题，避免两者分叉。
 ~~~
@@ -204,16 +255,21 @@ export function Overview() {
 
 ## 交付验收
 
-任一项不满足，都不能以“主题已加载”替代完成。
+先确定本次影响范围，再检查对应项目。新增页面或全局主题调整需覆盖 1440、900、390、320px；单一组件细化检查其桌面与最窄可用视口。只有纯文档改动时，检查链接、路径、参数与源码一致性即可。出现故障、跨模块影响或架构调整再扩大测试，不机械重复全套检查。
 
-- [ ] 在 1440、900、390、320px 下无页面横向溢出，中文不重叠、不被裁切。
+以下适用项不满足时，不能以“主题已加载”替代完成：
+
+- [ ] 在本次要求的视口下无页面横向溢出，中文不重叠、不被裁切。
 - [ ] 常规文字至少 14px，注释至少 12px，段落 16px；浅/深材质上的文字都能读清。
 - [ ] 白玻璃透出底层环境光，高光与阴影克制，没有大面积死灰填充。
 - [ ] 黑亚克力中心足够深，文字清楚；冰蓝只作照明，红色形成明确行动节奏。
 - [ ] 有主次信息结构，不是模板式等尺寸卡片堆叠；内容密度与业务相符。
 - [ ] 输入标签、错误说明、焦点、键盘、44px 触控目标、空/加载/错误状态按需完整。
 - [ ] 支持深色的项目，在 html.dark 下实际检查背景、图表、表单、Dialog portal，不能只切页面底色。
-- [ ] 正常和 reduced-motion 模式都可用，交互不只停留在静态截图。
+- [ ] 动效改动须实际播放验证，不能只看截图：流光暂停/恢复稳定，暂停不影响滚动视差；切模板保持暂停选择；后台暂停、回前台恢复遵循用户选择。
+- [ ] 刻字改动检查白玻璃、黑亚克力与红色控件；正文和未选中项保持无阴影，高对比模式关闭刻字。
+- [ ] 视差不影响原生滚动、点击和 sticky；正常与 reduced-motion 模式均可用，后者为静态光场且清除视差。
+- [ ] 形象改动检查相应状态、暂停和 reduced-motion；保留抽象柔性轮廓与两枚极简眼点。
 - [ ] 构建通过；验证本次修改影响的最小行为范围，并保存桌面/手机截图比较。
 
 ## 资产与边界
@@ -230,28 +286,3 @@ export function Overview() {
 ### 精细度不可随复用退化
 
 白色玻璃必须能看见下层光与内容的柔化；黑色亚克力用局部反射表达表面，不能整体抬亮为灰色。复用同时保留边缘高光、接触阴影、刻度、图表端点和行动反馈，不能把不同场景统一成卡片墙。以组件库的材质光影实验、数据分析和任务协作作为补充验收样本；详情见 ASSETS.md 的精细度与场景构图章节。
-
-## 控件细节与层次
-
-- 分为三层：玻璃内容面板、轻微内凹的输入框、带边缘反光的操作按钮。输入底色与内阴影由 --crease-control / --crease-control-shadow 控制；深色模式单独定义，不能复用白色高光。
-- 输入框、Textarea、Select 共用一个 2px 红色焦点轮廓，不叠加粗光晕。错误保留 destructive 边框，禁用与悬停不能覆盖错误语义。字段标签与输入保持真实 8px 间距。
-- Tabs 选中项使用清晰文字、微高光、短红标记；键盘焦点另行保留。未选中文字使用 muted-foreground，禁止把文字 opacity 降到难以阅读。
-- 数据表格外层使用 crease-data-table：轻表头、细行分隔，选中行带浅红底与左侧红边。金额列声明 align: "right"，同时作用于列标题、排序按钮及单元格。分页说明当前记录范围。
-- Dialog 内容保持不透明以便阅读，边缘与投影负责层级；背景遮罩做 5px 模糊。关闭按钮至少 44px；弹窗高度不超过视口减 32px，内容超出时内部滚动。关闭后焦点返回打开弹窗的控件；自定义 onCloseAutoFocus 可覆盖这一行为。
-- 控件反馈限于颜色、阴影、transform，时长 150–180ms；弹窗退出 120ms。仅精细指针开启悬停位移；减少动态效果时取消位移和过渡。Tooltip 首次悬停等待 350ms，避免移动鼠标时不断闪现。
-
-## 亚克力刻字
-
-标题与选中状态使用浅刻字：上缘暗切线、下缘反射光，保留不透明字形和原有语义文字色。它是 CSS text-shadow 的视觉模拟，不是真实三维凹槽。
-
-- crease-title 自动带标题刻字；局部标题可添加 crease-engraved-title，短标签可添加 crease-engraved。工具类只改变文字光影，不修改背景、布局或正文颜色。
-- Tabs 选中项、aria-pressed="true" 的 Button 自动添加刻字，字重 600。主按钮与当前导航采用适合红色亚克力的暗红切边；普通标题保持 550。
-- 白玻璃、全局 dark、局部 crease-ink 分别继承 --crease-etch / --crease-etch-title。刻字类放在材质容器内部，避免在业务页写死白色高光。
-- 控件的光影偏移约 1px，标题最多约 2px；不使用模糊发光、透明文字、粗描边、重复文字图层。正文、说明、未选中控件不叠加刻字。
-- 高对比与强制颜色模式关闭文字阴影，保留原有文字与状态标记。组件实验室的「文字与材质」提供浅色玻璃、黑色亚克力的对照样张。
-
-## 背景流光
-
-WorkspaceShell 的冰蓝远光与近层反射分别以 22 秒、30 秒单程往返流动，近层错开 8 秒起始相位。渐变画好后只动画 transform 与 opacity，不逐帧修改模糊半径或触发 React 渲染。光位于正文和玻璃下方，容器裁切溢出且不接收指针事件。
-
-流光 transform 与滚动视差 translate 独立叠加：页面不滚动时也有缓慢光变，滚动仍保留远近层速差。手机延长周期至 28 / 36 秒。工具栏可暂停/恢复流光，暂停保持当前相位；切换模板保留暂停状态。页面隐藏时暂停，回到前台按用户的播放状态恢复。系统启用减少动态效果时显示静态光场，并隐藏流光开关。

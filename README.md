@@ -2,6 +2,10 @@
 
 白色场域、近黑亚克力、玻璃叠层、冰蓝环境光与信号红。以三个 Dribbble 稿件为结构基准，保留卡片组合、比例、信息层级与图表细节，转译为 CREASE 原主题配色。界面导航、按钮、说明与弹窗统一使用中文。
 
+## Agent 接手
+
+先读 [AGENTS.md](AGENTS.md)，再按任务读取 [design.md](design.md) 与 [设计资产说明](design/ASSETS.md)。当前产品模板基线是 /examples/library.html；参考研究页保留独立构图。设计规范已覆盖中文可变字体、亚克力刻字、背景流光、滚动视差和柔性动态形象；完成要求包含可核对的视觉与交互验证。
+
 ## 在其他项目复用
 
 先读 [design.md](design.md)，复制 [src/theme/crease.css](src/theme/crease.css)，再用 [examples/theme.tsx](examples/theme.tsx) 验证。主题是唯一变量与材质来源，参考页布局 CSS 不需要迁移。新项目的 AGENTS.md 应明确要求读取 design.md。
@@ -36,7 +40,7 @@ npm run preview
 
 ## 实现
 
-React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 shadcn/ui（Radix）。Outfit / Syne 字体本地打包。
+React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 shadcn/ui（Radix）。Outfit / Syne 与 Noto Sans SC Variable 中文字体自托管。
 
 - [src/theme/crease.css](src/theme/crease.css)：可独立迁移的 Tailwind v4 / shadcn 主题；包含完整语义色、玻璃、冰蓝光、深黑亚克力与深浅模式。
 - src/theme/references.css：三个参考页的结构、材质和响应式布局。
