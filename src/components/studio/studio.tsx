@@ -138,7 +138,7 @@ export function Studio() {
           <DialogHeader>
             <DialogTitle>关于 CREASE / 参考设计</DialogTitle>
             <DialogDescription>
-              保留参考稿的构图与细节，以白、黑亚克力和红色细线转译配色。
+              保留参考稿的构图与细节，以白色玻璃、深黑亚克力和信号红转译配色。
             </DialogDescription>
           </DialogHeader>
           <p className="text-sm leading-7">
@@ -216,7 +216,7 @@ function DesignSystem() {
         </div>
         <div
           className="material-study"
-          aria-label="透明玻璃、黑色亚克力与红色细线的材质组合"
+          aria-label="透明玻璃、黑色亚克力与信号红的材质组合"
         >
           <div className="study-base" />
           <div className="study-glass" />
@@ -237,7 +237,7 @@ function DesignSystem() {
             {[
               ["#ffffff", "场域", "白色场域"],
               ["#0a0a0c", "体块", "近黑体块"],
-              ["#d31218", "引导", "红色细线"],
+              ["#d31218", "引导", "信号红"],
             ].map(([color, name, label]) => (
               <div key={name}>
                 <i style={{ background: color }} />
@@ -276,7 +276,7 @@ function DesignSystem() {
             <Button disabled>不可用</Button>
           </div>
           <p className="spec-note">
-            黑色承载行动。细线表达选中。
+            白色玻璃承载内容，深黑形成体块，红色标记关键行动与当前状态。
             <br />
             键盘焦点、按压反馈与减少动态效果同样重要。
           </p>
