@@ -31,6 +31,7 @@ import assistantSource from "@/templates/assistant.tsx?raw";
 import settingsSource from "@/templates/settings.tsx?raw";
 import gallerySource from "@/templates/component-gallery.tsx?raw";
 import companionLabSource from "@/templates/companion-lab.tsx?raw";
+import scrollDepthSource from "@/components/kit/use-scroll-depth.ts?raw";
 import shellSource from "@/components/kit/workspace-shell.tsx?raw";
 import tableSource from "@/components/kit/data-table.tsx?raw";
 import metricSource from "@/components/kit/metric-card.tsx?raw";
@@ -57,7 +58,7 @@ const pages=[
  {id:"components",label:"组件与状态",icon:<Shapes className="size-4" />,Component:ComponentGallery,keywords:"加载 骨架 空白 错误 告警 进度 弹窗 按钮 组件",source:gallerySource},
  {id:"companion",label:"折光 · 动态形象",icon:<Sparkles className="size-4" />,Component:CompanionLab,keywords:"grokbot 形象 角色 动态 表情 思考 动画",source:companionLabSource},
 ];
-const sources:Record<string,string>={...Object.fromEntries(pages.map(p=>[p.id,p.source])),"工作空间布局":shellSource,"数据表格":tableSource,"数据卡片":metricSource,"文章与图片卡片":cardSource,"告警与等待":feedbackSource,"AI 对话组件":chatSource,"动态形象组件":companionSource,"动态形象样式":companionCss,"材质光影实验":materialSource,"对比柱图":barSource,"场景标题":headingSource,"刻度进度环":ringSource,"完整主题":themeSource};
+const sources:Record<string,string>={...Object.fromEntries(pages.map(p=>[p.id,p.source])),"工作空间布局":shellSource,"滚动视差":scrollDepthSource,"数据表格":tableSource,"数据卡片":metricSource,"文章与图片卡片":cardSource,"告警与等待":feedbackSource,"AI 对话组件":chatSource,"动态形象组件":companionSource,"动态形象样式":companionCss,"材质光影实验":materialSource,"对比柱图":barSource,"场景标题":headingSource,"刻度进度环":ringSource,"完整主题":themeSource};
 function Library(){
  const [active,setActive]=useState(location.hash.slice(1)||"components"),[dark,setDark]=useState(false),[search,setSearch]=useState(false),[query,setQuery]=useState(""),[source,setSource]=useState(false),[sourceKey,setSourceKey]=useState("admin"),[copied,setCopied]=useState(false),[copyError,setCopyError]=useState("");
  useEffect(()=>{const change=()=>setActive(location.hash.slice(1)||"components");addEventListener("hashchange",change);return()=>removeEventListener("hashchange",change);},[]);
