@@ -5192,11 +5192,11 @@
   font-kerning: normal;
 }
 .finance-greeting h2 {
-  letter-spacing: -1px;
+  letter-spacing: 0.01em;
 }
 .finance-greeting h2 small {
   font-size: 29px;
-  letter-spacing: -0.8px;
+  letter-spacing: 0.01em;
 }
 .finance-date [data-slot="button"] {
   letter-spacing: 0.3px;
@@ -5239,7 +5239,7 @@
   font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.4;
-  letter-spacing: -1px;
+  letter-spacing: 0.01em;
 }
 @media (max-width: 1250px) and (min-width: 801px) {
   .finance-greeting h2 small {
@@ -5322,3 +5322,6 @@
   .calendar-event .tiny-avatars { display: none; }
   .calendar-event { max-width: 72%; }
 }
+
+/* Preserve natural CJK widths in reference headings; numeric displays stay compact. */
+.reference-canvas :is(h1, h2, h3, h4) { letter-spacing: 0.01em; line-height: 1.45; }

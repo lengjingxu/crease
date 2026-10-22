@@ -67,13 +67,29 @@ src/styles.css、src/theme/references.css、src/theme/studio.css 是本仓库的
 
 ## 字体与阅读
 
-- 拉丁正文/数字：Outfit 400/500。拉丁品牌标题：Syne 600。中文使用 PingFang SC / Microsoft YaHei 等系统中文字体；Outfit 与 Syne 不提供中文字形。
-- 正文段落：16px / 1.7（crease-body）。密集界面的普通文案、控件、表格：14px / 至少 1.5（text-sm leading-6）。
+- 拉丁正文/数字：Outfit 400/500。拉丁品牌标题：Syne 600。中文统一使用自托管 Noto Sans SC Variable（思源黑体字形），由主题 CSS 导入；支持 100–900 连续字重，避免不同设备依赖不同中文字体。Outfit 与 Syne 不提供中文字形。
+- 正文段落：16px / 1.85（crease-body）；长文使用 crease-prose，行高 1.9、段间距 1.25em、行宽不超过 38em。密集界面的普通文案、控件、表格：14px / 至少 1.5（text-sm leading-6）。
 - 次级说明与图表刻度：**不得低于 12px**（crease-caption / text-xs），重要操作不能用 12px。
 - 主标题 32–48px，章节 20–24px，卡片标题 16–20px。手机标题相应减小，但不压缩正文。
 - 普通正文至少 4.5:1，大字和有意义的图形边界至少 3:1；玻璃按实际合成背景检查，不能只检查纯白底色值。
 - 深黑卡上的正文保持白色，说明用浅灰。不要给整个已完成行加低 opacity 让文字消失；用复选框、删除线与标签表达状态。
 - 输入框在手机上采用 16px 字号，避免浏览器自动缩放；触控目标至少 44px。
+
+### 中文排版角色（直接复用）
+
+| 工具类 | 字号 / 字重 / 行高 | 用途 |
+| --- | --- | --- |
+| crease-title | 28–36px / 550 / 1.4 | 页面标题，中文自然字宽，0.015em 微字距 |
+| crease-heading | 20px / 550 / 1.5 | 区域、文章卡片标题 |
+| crease-body | 16px / 400 / 1.85 | 说明与正文 |
+| crease-prose | 16px / 400 / 1.9 | 多段中文阅读，自动段间距与合理行宽 |
+| crease-label | 14px / 500 / 1.6 | 操作、字段标签 |
+| crease-caption | 12px / 400 / 1.75 | 时间、辅助说明 |
+| crease-eyebrow | 12px / 500 / 1.75 | 短章节引导，0.1em 字距 |
+
+中文标题禁止套用 tracking-tight/tighter 与 leading-none；不要用细字重或降低透明度制造精致感。控件保持 500、标题 550，正文 400；字重用真实可变字形，主题关闭合成粗体。段落采用严格中文禁则与自然换行，不手工插空格撑开汉字。数值继续使用 tabular-nums，紧字距仅用于纯数字/拉丁展示。中英文之间按语义留正常空格。
+
+字体随构建自托管，不请求 Google Fonts；常规页面按 unicode-range 加载需要的分片。单文件导出会内嵌完整字体（约增加 6 MB），保证离线预览中文字形一致。组件实验室内有浅色/黑色材质中文样张，可用于后续项目验收。
 
 ## 布局与信息密度
 
@@ -105,7 +121,7 @@ src/styles.css、src/theme/references.css、src/theme/studio.css 是本仓库的
 建立 React + TypeScript 工程，接入 Tailwind v4。Vite 使用 @tailwindcss/vite 插件；其他框架按 Tailwind v4 官方方式配置。安装：
 
 ~~~sh
-npm install tailwindcss tw-animate-css @fontsource/outfit @fontsource/syne
+npm install tailwindcss tw-animate-css @fontsource-variable/noto-sans-sc @fontsource/outfit @fontsource/syne
 npm install -D @tailwindcss/vite
 npx shadcn@latest init
 npx shadcn@latest add button input dialog

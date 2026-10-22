@@ -10,6 +10,7 @@
     "export:library": "vite build --config vite.single.config.ts"
   },
   "dependencies": {
+    "@fontsource-variable/noto-sans-sc": "^5.3.1",
     "@fontsource/outfit": "^5.2.0",
     "@fontsource/syne": "^5.2.0",
     "class-variance-authority": "^0.7.1",
