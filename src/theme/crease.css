@@ -58,6 +58,19 @@
   --crease-control: linear-gradient(180deg, #f5f9fc90, #ffffffd9);
   --crease-control-shadow: inset 0 1px 2px #18324a0a, 0 1px 0 #ffffffcc;
   --crease-modal-shadow: inset 0 1px 0 #fff, 0 2px 4px #0a172c0a, 0 28px 80px -20px #0a172c4d;
+
+  /* Motion tokens: one duration scale and one easing role per job (design/INTERACTION.md). */
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 260ms;
+  --dur-4: 420ms;
+  --dur-5: 640ms;
+  --ease-enter: cubic-bezier(0, 0, 0.58, 1);
+  --ease-exit: cubic-bezier(0.42, 0, 1, 1);
+  --ease-move: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-continuity: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-overshoot: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .dark {
@@ -135,6 +148,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --ease-enter: var(--ease-enter);
+  --ease-exit: var(--ease-exit);
+  --ease-move: var(--ease-move);
+  --ease-settle: var(--ease-settle);
+  --ease-continuity: var(--ease-continuity);
+  --ease-overshoot: var(--ease-overshoot);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -208,8 +227,10 @@
 .dark .crease-rail { background: linear-gradient(160deg, #13181db3, #08090b55); box-shadow: 1px 0 0 #ffffff09; }
 .crease-toolbar { background: linear-gradient(100deg, #ffffffb8, #ffffff45); }
 .dark .crease-toolbar { background: linear-gradient(100deg, #11161bb8, #11161b45); }
-[data-slot="button"] { transition: transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms ease, background-color 180ms ease, color 180ms ease; }
-[data-slot="button"]:active:not(:disabled) { transform: scale(.97); }
+[data-slot="button"] { transition: transform var(--dur-1) var(--ease-settle), box-shadow 140ms ease, background-color var(--dur-2) ease, color var(--dur-2) ease; }
+[data-slot="button"]:active:not(:disabled) { transform: translateY(1px); }
+[data-slot="button"][data-variant="default"]:active:not(:disabled) { box-shadow: inset 0 2px 4px #7d050bcc, inset 0 1px 0 #ffffff20, 0 1px 1px #d3121820; }
+[data-slot="button"][data-variant="outline"]:active:not(:disabled) { box-shadow: inset 0 2px 4px #142c451f, inset 0 1px 0 #ffffff30; }
 [data-slot="button"][data-variant="default"] { box-shadow: inset 0 1px 0 #ffffff35, 0 3px 6px #d3121820, 0 8px 16px -10px #d3121866; }
 [data-slot="button"][data-variant="outline"] { background-image: linear-gradient(140deg,#ffffff24,transparent 65%); box-shadow: inset 0 1px 0 #ffffff55, 0 3px 5px -3px #142c4529; }
 .dark [data-slot="button"][data-variant="outline"] { box-shadow: inset 0 1px 0 #ffffff12, 0 3px 5px -3px #00000080; }
@@ -243,7 +264,7 @@
   .crease-lift:hover { transform:translateY(-3px); box-shadow:var(--crease-glass-shadow),0 20px 30px -24px #284c6d66; }
   .crease-image-frame:hover img { transform:scale(1.035); }
   [data-slot="button"]:hover:not(:disabled) { transform:translateY(-1px); }
-  [data-slot="button"]:active:not(:disabled) { transform:scale(.97); }
+  [data-slot="button"]:active:not(:disabled) { transform:translateY(1px); }
 }
 @keyframes crease-arrive { from { opacity:0; transform:translateY(9px); } to { opacity:1; transform:translateY(0); } }
 @keyframes crease-draw { from { stroke-dashoffset:400; } }
@@ -353,4 +374,46 @@ label.space-y-2 > span:first-child { display:block; }
 @media (forced-colors:active), (prefers-contrast:more) {
   .crease-title, .crease-engraved, .crease-engraved-title,
   [data-slot="tabs-trigger"], [data-slot="button"], .crease-nav { text-shadow:none; }
+}
+
+/* ————— Interaction layer (design/INTERACTION.md) —————
+   Tokens above; behaviours below. Only transform/opacity animate.
+   Delays come in pairs: show late, stay long enough to read. */
+
+/* Scroll reveal: content rises once when it enters the viewport.
+   use-reveal.ts adds .is-revealed and a capped --reveal-delay stagger. */
+[data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 560ms var(--ease-enter), transform 560ms var(--ease-enter); transition-delay: var(--reveal-delay, 0ms); }
+[data-reveal].is-revealed { opacity: 1; transform: none; }
+
+/* Pressable surfaces share the button's press-in physics. */
+.crease-pressable { transition: transform var(--dur-1) var(--ease-settle), box-shadow 140ms ease; }
+.crease-pressable:active { transform: translateY(1px); box-shadow: inset 0 2px 5px #142c451a, var(--crease-glass-shadow); }
+@media (hover:hover) and (pointer:fine) { .crease-pressable:hover { transform: translateY(-1px); } .crease-pressable:active { transform: translateY(1px); } }
+
+/* Exit for removed cards/rows: fade + settle back, then the caller unmounts.
+   240ms matches the delete spec's fallback and stays under the 3-effect budget. */
+.crease-exit { animation: crease-exit 240ms var(--ease-exit) forwards; pointer-events: none; }
+@keyframes crease-exit { to { opacity: 0; transform: translateY(-4px) scale(.96); } }
+
+/* Skeleton sweep: one bright band crosses every placeholder in sync (1.2s).
+   Pair with the loading rules: appear after 300ms, stay at least 500ms. */
+.crease-shimmer { position: relative; overflow: hidden; }
+.crease-shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 20%, #ffffff9e 50%, transparent 80%); transform: translateX(-100%); animation: crease-shimmer 1.2s linear infinite; }
+.dark .crease-shimmer::after { background: linear-gradient(100deg, transparent 20%, #ffffff14 50%, transparent 80%); }
+@keyframes crease-shimmer { to { transform: translateX(100%); } }
+
+/* Toast channel (kit/toast.tsx): top-centre, 40px tall, concentric corners. */
+.crease-toast { animation: crease-toast-in 500ms cubic-bezier(.25,.1,.25,1) both; }
+.crease-toast[data-leaving="true"] { animation: crease-toast-out 220ms var(--ease-exit) forwards; }
+@keyframes crease-toast-in { from { opacity: 0; transform: translateY(-10px) scale(.96); } }
+@keyframes crease-toast-out { to { opacity: 0; transform: translateY(-6px) scale(.97); } }
+.crease-notify-card { animation: crease-notify-in 560ms var(--ease-settle) both; }
+.crease-notify-card[data-leaving="true"] { animation: crease-toast-out 220ms var(--ease-exit) forwards; }
+@keyframes crease-notify-in { from { opacity: 0; transform: translateY(-14px) scale(.95); } }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .crease-pressable, .crease-pressable:hover, .crease-pressable:active { transform: none; }
+  .crease-shimmer::after { animation: none; }
+  .crease-exit { animation-duration: 150ms; }
 }
