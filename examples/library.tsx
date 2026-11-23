@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { LayoutDashboard, BarChart3, Kanban, FolderOpen, Bell, Files, MessageCircle, Settings, Shapes, Sparkles, Moon, Sun, Search, Code2, Copy, Check } from "lucide-react";
+import { LayoutDashboard, BarChart3, Kanban, FolderOpen, Bell, Files, MessageCircle, Settings, Shapes, Sparkles, MousePointerClick, Moon, Sun, Search, Code2, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +17,7 @@ import { AnalyticsTemplate } from "@/templates/analytics";
 import { TasksTemplate } from "@/templates/tasks";
 import { FilesTemplate } from "@/templates/files";
 import { NotificationsTemplate } from "@/templates/notifications";
+import { InteractionLabTemplate } from "@/templates/interaction-lab";
 import analyticsSource from "@/templates/analytics.tsx?raw";
 import tasksSource from "@/templates/tasks.tsx?raw";
 import filesSource from "@/templates/files.tsx?raw";
@@ -31,6 +32,10 @@ import assistantSource from "@/templates/assistant.tsx?raw";
 import settingsSource from "@/templates/settings.tsx?raw";
 import gallerySource from "@/templates/component-gallery.tsx?raw";
 import companionLabSource from "@/templates/companion-lab.tsx?raw";
+import interactionLabSource from "@/templates/interaction-lab.tsx?raw";
+import interactionLabCss from "@/templates/interaction-lab.css?raw";
+import toastSource from "@/components/kit/toast.tsx?raw";
+import revealSource from "@/components/kit/use-reveal.ts?raw";
 import scrollDepthSource from "@/components/kit/use-scroll-depth.ts?raw";
 import shellSource from "@/components/kit/workspace-shell.tsx?raw";
 import tableSource from "@/components/kit/data-table.tsx?raw";
@@ -57,8 +62,9 @@ const pages=[
  {id:"settings",label:"偏好设置",icon:<Settings className="size-4" />,Component:SettingsTemplate,keywords:"表单 设置 标签 开关 通知",source:settingsSource},
  {id:"components",label:"组件与状态",icon:<Shapes className="size-4" />,Component:ComponentGallery,keywords:"加载 骨架 空白 错误 告警 进度 弹窗 按钮 组件",source:gallerySource},
  {id:"companion",label:"折光 · 动态形象",icon:<Sparkles className="size-4" />,Component:CompanionLab,keywords:"grokbot 形象 角色 动态 表情 思考 动画",source:companionLabSource},
+ {id:"interactions",label:"交互实验室",icon:<MousePointerClick className="size-4" />,Component:InteractionLabTemplate,keywords:"交互 动效 按压 菜单 拖拽 全息 滚动 缓动 删除 动画 实验室",source:interactionLabSource},
 ];
-const sources:Record<string,string>={...Object.fromEntries(pages.map(p=>[p.id,p.source])),"工作空间布局":shellSource,"滚动视差":scrollDepthSource,"数据表格":tableSource,"数据卡片":metricSource,"文章与图片卡片":cardSource,"告警与等待":feedbackSource,"AI 对话组件":chatSource,"动态形象组件":companionSource,"动态形象样式":companionCss,"材质光影实验":materialSource,"对比柱图":barSource,"场景标题":headingSource,"刻度进度环":ringSource,"完整主题":themeSource};
+const sources:Record<string,string>={...Object.fromEntries(pages.map(p=>[p.id,p.source])),"工作空间布局":shellSource,"滚动视差":scrollDepthSource,"数据表格":tableSource,"数据卡片":metricSource,"文章与图片卡片":cardSource,"告警与等待":feedbackSource,"AI 对话组件":chatSource,"动态形象组件":companionSource,"动态形象样式":companionCss,"材质光影实验":materialSource,"交互实验室样式":interactionLabCss,"Toast 与通知":toastSource,"滚动入场":revealSource,"对比柱图":barSource,"场景标题":headingSource,"刻度进度环":ringSource,"完整主题":themeSource};
 function Library(){
  const [active,setActive]=useState(location.hash.slice(1)||"components"),[dark,setDark]=useState(false),[search,setSearch]=useState(false),[query,setQuery]=useState(""),[source,setSource]=useState(false),[sourceKey,setSourceKey]=useState("admin"),[copied,setCopied]=useState(false),[copyError,setCopyError]=useState("");
  useEffect(()=>{const change=()=>setActive(location.hash.slice(1)||"components");addEventListener("hashchange",change);return()=>removeEventListener("hashchange",change);},[]);

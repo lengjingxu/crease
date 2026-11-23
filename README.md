@@ -59,7 +59,7 @@ React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 
 
 ## 扩展组件库
 
-访问 **/examples/library.html**：管理后台、数据分析、任务协作、文件管理、通知中心、内容中心、AI 对话、偏好设置、组件与状态、原创动态形象「折光」。包含实际 shadcn 基础组件和可复制组合组件，参见 [设计资产说明](design/ASSETS.md)。全部中文，支持深浅模式和手机布局。
+访问 **/examples/library.html**：管理后台、数据分析、任务协作、文件管理、通知中心、内容中心、AI 对话、偏好设置、组件与状态、交互实验室、原创动态形象「折光」。交互原则见 [design/INTERACTION.md](design/INTERACTION.md)：vibedesign.tips 全站 22 个交互已逐项在交互实验室以 CREASE 方案实现，动效令牌与交互层位于 crease.css。包含实际 shadcn 基础组件和可复制组合组件，参见 [设计资产说明](design/ASSETS.md)。全部中文，支持深浅模式和手机布局。
 
 ~~~sh
 npm run export:library

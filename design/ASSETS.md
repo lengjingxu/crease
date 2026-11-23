@@ -2,7 +2,7 @@
 
 先读取根目录 [design.md](../design.md)，再选模板。所有模板使用同一份 [crease.css](../src/theme/crease.css)，不依赖历史参考页样式。中文界面、白色玻璃、深黑亚克力、信号红和底层冰蓝环境光保持一致。
 
-## 十个可运行页面
+## 十一个可运行页面
 
 运行 npm run dev 后访问 /examples/library.html，通过左侧导航或手机菜单切换。
 
@@ -18,6 +18,7 @@
 | #settings | 偏好设置 | 表单校验、标签页、通知开关、保存反馈 |
 | #components | 组件与状态 | 按钮、徽标、输入框、提示、弹窗、告警、进度、骨架、空白与错误 |
 | #companion | 折光动态形象 | 七种状态、播放/暂停、动作重播、嵌入场景 |
+| #interactions | 交互实验室 | vibedesign.tips 全站 22 个交互逐项以 CREASE 方案实现：按压、级联菜单、ASCII/抖动、同心圆角、拖拽让位、书本卡片、中英混排、Wiki 目录、浮层选择、液态玻璃、缓动曲线、消息气泡、冲击波光晕、删除四式、界面连续性、Toast/通知双通道、加载规则、全息卡片、滚动驱动、选择控件、环形卡片、空状态四级 |
 
 以上业务数据只保存在组件内存中，刷新或离开对应模板会重置。导出为真实 CSV 下载，但项目增删不写入服务器。AI 模板明确使用本地规则演示，无真实模型请求，也不模拟逐字流式生成。
 
@@ -27,7 +28,7 @@
 2. 复制 src/theme/crease.css，在应用入口导入一次；配置 @tailwindcss/vite 与 tw-animate-css。
 3. 复制 src/lib/utils.ts、需要的 src/components/ui/ 文件及对应 kit 文件。安装 react、react-dom、radix-ui、lucide-react、class-variance-authority、clsx、tailwind-merge；版本以根 package.json 为准。
 4. 静态页面根部使用 crease-canvas；需要当前模板的流光、视差和播放控制时，复制 WorkspaceShell 与 use-scroll-depth.ts 及其 imports，仅复制 CSS 不足以启用这些行为。玻璃容器使用 crease-glass，重点黑色区域使用 crease-ink。全局深色模式将 .dark 放在 html 上，保证 portal 弹窗也继承。
-5. 复制所选 src/templates/ 文件和它直接导入的组件；内容模板还需 src/assets/ 三张原创 SVG。Companion 必须连同 companion.css 复制。
+5. 复制所选 src/templates/ 文件和它直接导入的组件；内容模板还需 src/assets/ 三张原创 SVG。Companion 必须连同 companion.css 复制；交互实验室必须连同 interaction-lab.css 复制。动效令牌与交互层（按压、滚动入场、退出、骨架扫光、Toast 动画）都在 crease.css 内，随主题一并迁移。
 6. Outfit / Syne 为可选本地拉丁字体；中文由主题自托管 Noto Sans SC Variable，需安装 @fontsource-variable/noto-sans-sc；排版角色见 design.md。如使用 examples/library.tsx 的完整入口，同时安装 @fontsource/outfit 和 @fontsource/syne。
 
 顶部“查看可复制源码”提供模板、组合组件与主题源码。该视图不包含完整依赖树；迁移仍须按 imports 复制基础组件。Tooltip 的使用区域需包裹 TooltipProvider。
@@ -43,6 +44,8 @@
 | kit/feedback.tsx | Notice：info/success/warning/error；StatePanel：loading/empty/error；TaskProgress：进度与取消；ConfirmDialog：受控确认框 |
 | kit/chat-panel.tsx | ChatPanel：必传 onReply，可选 demo；纯文本安全显示、AbortSignal 取消 |
 | kit/companion.tsx | Companion：state、animated、className；默认不播放动画 |
+| kit/use-reveal.ts | useReveal(containerRef, key)：为容器内 [data-reveal] 元素接入滚动入场（45ms 阶梯、最多 8 档，reduced-motion 直接显示）；WorkspaceShell 已默认接入 |
+| kit/toast.tsx | ToastProvider + useToast：toast(message) 顶部居中状态提示；notify({title, body, actionLabel, onAction}) 右上通知卡堆叠；参数见 INTERACTION.md 016 |
 
 DataTable 当前为本地五条分页，选择在搜索和分页间保留；删除回调接收选中 ID，实际删除由调用者负责。远程分页应由业务页明确实现服务器契约，不能把本地分页当远程数据接口。ConfirmDialog 的 onConfirm 为同步动作；异步删除应由调用者增加提交中、错误和关闭策略。
 

@@ -16,6 +16,7 @@
 | 配色、玻璃、中文排版 | src/theme/crease.css、受影响的组件 | 语义颜色、材质、字体与阅读 |
 | 刻字、按钮、表单与弹窗 | crease.css、src/components/ui/ | 控件细节与层次、亚克力刻字 |
 | 流光与视差 | kit/workspace-shell.tsx、kit/use-scroll-depth.ts、crease.css | 背景流光；ASSETS.md 的滚动视差 |
+| 动效、反馈与交互状态 | crease.css 的动效令牌与交互层、kit/use-reveal.ts、kit/toast.tsx、src/templates/interaction-lab.tsx | design/INTERACTION.md（22 条原则与落点） |
 | 动态形象 | kit/companion.tsx、kit/companion.css | ASSETS.md 的折光规范 |
 | 新业务场景 | src/templates/ 中最接近的模板 | 布局与信息密度；ASSETS.md 的场景构图 |
 
@@ -30,7 +31,8 @@
 | examples/theme.html | 独立入口，运行后访问 /examples/theme.html |
 | design.md | 本仓库与新项目的设计规则、实现流程和验收标准 |
 | AGENTS.md | 本仓库 Agent 的读取顺序、完成标准与提交流程 |
-| design/ASSETS.md | 十个模板、组件 API、复制依赖与动态形象规范 |
+| design/ASSETS.md | 十一个模板、组件 API、复制依赖与动态形象规范 |
+| design/INTERACTION.md | 交互原则：动效令牌、22 条交互规则与代码落点（提炼自 vibedesign.tips 全站研究） |
 | design/DIRECTION.md | 本次三张参考稿的分析、来源与取舍，属于研究档案 |
 
 可迁移栈：React、TypeScript、Tailwind CSS **v4**、shadcn/ui。crease.css 含 Tailwind 指令，必须经过 Tailwind 构建，不可作为普通 CSS 用 link 直接加载。不要混用 v3 的 @tailwind 指令或 HSL 三元组变量写法。
@@ -153,6 +155,10 @@ WorkspaceShell 的冰蓝远光与近层反射单程分别为 22 秒、30 秒，�
 - 数据表格外层使用 crease-data-table：轻表头、细行分隔，选中行带浅红底与左侧红边。金额列声明 align: "right"，同时作用于列标题、排序按钮及单元格。分页说明当前记录范围。
 - Dialog 内容保持不透明以便阅读，边缘与投影负责层级；背景遮罩做 5px 模糊。关闭按钮至少 44px；弹窗高度不超过视口减 32px，内容超出时内部滚动。关闭后焦点返回打开弹窗的控件；自定义 onCloseAutoFocus 可覆盖这一行为。
 - 控件反馈限于颜色、阴影、transform，时长 150–180ms；弹窗退出 120ms。仅精细指针开启悬停位移；减少动态效果时取消位移和过渡。Tooltip 首次悬停等待 350ms，避免移动鼠标时不断闪现。
+
+## 交互原则
+
+动效与反馈的完整规范在 [design/INTERACTION.md](design/INTERACTION.md)，与本文件同级生效。要则：只动 transform 与 opacity；退出恒短于进入；延迟成对出现（加载态 300ms 后显示、至少留 500ms；菜单打开约 220ms、关闭宽限 360ms）；错峰按 45ms 阶梯且最多 8 档；效果有配额（一屏一张全息卡、一页一种滚动特效、同时最多 3 个删除特效）；reduced-motion 降级是默认档。时长与缓动只用 crease.css 的令牌：`--dur-1`（120ms）至 `--dur-5`（640ms）与六条角色缓动（`--ease-enter` / `--ease-settle` / `--ease-exit` / `--ease-move` / `--ease-continuity` / `--ease-overshoot`），禁止裸用默认 `ease`，linear 只给旋转与进度。按钮按下走下沉 1px + 投影塌陷（001）；嵌套圆角遵守 `内圆角 = 外圆角 − padding`（004）；能撤销就不确认（009）；反馈分 Toast 与通知卡双通道（016，kit/toast.tsx）；加载与空状态按 017 / 022 的成对规则。vibedesign.tips 全站 22 个交互已逐项在组件库「交互实验室」页用 CREASE 方案实现，新增交互先查该页与 INTERACTION.md 的对应编号，不另起一套。
 
 ## 亚克力刻字
 
@@ -280,7 +286,7 @@ export function Overview() {
 
 ## 扩展资产与页面模板
 
-读取 [design/ASSETS.md](design/ASSETS.md) 获取十个模板、组合组件 API、复制依赖、AI 适配契约和原创动态形象规范。运行 /examples/library.html 查看管理后台、内容中心、AI 对话、设置、组件状态和折光实验室；顶部可查看并复制源码。npm run export:library 导出自包含 HTML 预览。新项目应同时加载本文件与 ASSETS.md，并从最接近业务的模板起步。
+读取 [design/ASSETS.md](design/ASSETS.md) 获取十一个模板、组合组件 API、复制依赖、AI 适配契约和原创动态形象规范；动效与反馈读取 [design/INTERACTION.md](design/INTERACTION.md)。运行 /examples/library.html 查看管理后台、内容中心、AI 对话、设置、组件状态、交互实验室和折光实验室；顶部可查看并复制源码。npm run export:library 导出自包含 HTML 预览。新项目应同时加载本文件与 ASSETS.md，并从最接近业务的模板起步。
 
 
 ### 精细度不可随复用退化
