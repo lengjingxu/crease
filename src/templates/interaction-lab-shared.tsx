@@ -34,12 +34,12 @@ export function SliderRow({ label, value, min, max, step = 1, unit = "", onChang
   onChange: (v: number) => void;
 }) {
   return (
-    <label className="flex max-w-md items-center gap-4 text-sm">
+    <label className="flex w-full max-w-md items-center gap-4 text-sm">
       <span className="w-20 shrink-0 font-medium">{label}</span>
       <input
         type="range" min={min} max={max} step={step} value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className="min-h-11 flex-1" style={{ accentColor: "var(--primary)" }} aria-label={label}
+        className="min-h-11 min-w-0 flex-1" style={{ accentColor: "var(--primary)" }} aria-label={label}
       />
       <span className="w-14 text-right tabular-nums">{value}{unit}</span>
     </label>
