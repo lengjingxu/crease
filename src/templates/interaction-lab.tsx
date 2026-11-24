@@ -478,7 +478,7 @@ function AsciiSection() {
           </button>
         ))}
       </div>
-      <div className="mt-2 grid gap-x-10 md:grid-cols-3">
+      <div className="mt-2 grid gap-x-10 xl:grid-cols-3">
         <SliderRow label="字符大小" value={asciiSize} min={6} max={14} unit="px" onChange={setAsciiSize} />
         <SliderRow label="抖动块" value={ditherSize} min={2} max={9} unit="px" onChange={setDitherSize} />
         <SliderRow label="强度" value={strength} min={0} max={100} onChange={setStrength} />
@@ -496,7 +496,7 @@ function CornersSection() {
   const r2 = Math.max(4, r1 - 8);
   return (
     <Section no="004" title="嵌套与连续圆角">
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 xl:grid-cols-3">
         <div className="crease-glass transition-[border-radius] duration-200" style={{ borderRadius: outer, padding: pad }}>
           <div className="bg-white/70 shadow-[inset_0_0_0_1px_rgb(0_0_0/0.05)] transition-[border-radius] duration-200" style={{ borderRadius: r1, padding: 8 }}>
             <div className="flex min-h-11 items-center justify-between bg-primary px-4 text-sm font-medium text-primary-foreground transition-[border-radius] duration-200" style={{ borderRadius: r2 }}>
@@ -902,7 +902,6 @@ function WikiSection() {
           {wikiChapters.map(ch => (
             <article key={ch.id} id={`wiki-${ch.id}`} className="mb-10 scroll-mt-14">
               <h3 className="text-base font-medium">{ch.title}</h3>
-              <p className="mt-2 max-w-prose text-sm leading-7 text-muted-foreground">{ch.body}</p>
               <p className="mt-2 max-w-prose text-sm leading-7 text-muted-foreground">{ch.body}</p>
             </article>
           ))}
