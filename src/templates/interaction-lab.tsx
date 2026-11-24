@@ -1158,6 +1158,111 @@ function EasingSection() {
 }
 
 
+/* ————— 总结：如何做好 UI（vibedesign.tips 全站跨篇共性） ————— */
+
+const durationScale = [
+  { label: "微反馈 hover / press", range: "100–150ms", w: 12 },
+  { label: "小 UI 进入 / 退出", range: "150–250 / 120–200ms", w: 22 },
+  { label: "中型浮层", range: "250–350ms", w: 34 },
+  { label: "大型 / 全屏转场", range: "350–500ms", w: 48 },
+  { label: "氛围长时程（光晕 · 视角切换 · 翻面波）", range: "1000–1800ms", w: 78 },
+  { label: "环境循环（流体渐变）", range: "17–40s", w: 100 },
+];
+
+const summaryCards: { title: string; points: string[] }[] = [
+  {
+    title: "缓动按角色，不按手感",
+    points: [
+      "进入 ease-out、离开 ease-in、屏内移位 ease-in-out、松手落定用 spring——一套 token 全站取用，不逐个组件手调。",
+      "默认 ease 明令禁用；linear 只给「转」不给「移」（spinner、进度、跑马灯）。",
+      "overshoot 只给 ≤64px 的小确认元素；弹簧签名反复出现：补位 1 − exp(−7t)·cos(6t)，约 520ms。",
+    ],
+  },
+  {
+    title: "连续性：同一个元素长过去",
+    points: [
+      "状态变化时被点的元素本身移动 / 生长到新状态（FLIP / 共享元素），不消失再重现。",
+      "新内容在移动过半（45–55%）后淡入，旧内容在前 25–35% 淡出；返回沿原路逆放。",
+      "错峰无处不在且量级一致：20–50ms 一档；位移与角度按 0.7ⁿ 几何衰减，邻项影响按 1/|d| 衰减。",
+    ],
+  },
+  {
+    title: "只动 transform 与 opacity",
+    points: [
+      "永不动画 width / height / top / margin / blur / box-shadow；要「变模糊、变阴影」就用两份预渲染版本交叉淡化。",
+      "手势 1:1 跟随、无缓动，松手把速度喂给弹簧续完；新动作从当前帧打断旧动画。",
+      "动画永不阻塞输入；Esc、点外、拖出 = 取消并原路弹回。",
+    ],
+  },
+  {
+    title: "几何与材质：一套公式",
+    points: [
+      "同心圆角贯穿全部嵌套：内圆角 = 外圆角 − 内边距，大圆角配连续圆角（超椭圆）。",
+      "光源全站统一正上方；材质靠五件套——面渐变 + 1px 边 + 顶高光 + 底暗线 + 双层投影——与品牌色解耦。",
+      "白底忌脏：深度用大小、模糊、淡出与层次表达，不用阴影和反射装深度；阴影色永向环境色微偏，不用纯黑。",
+    ],
+  },
+  {
+    title: "克制：效果有配额",
+    points: [
+      "一屏一张全息卡、一页一种滚动特效、一个产品一种删除特效、同时最多 3 个删除特效、每次等待只一种加载态、一个区域只一个主按钮。",
+      "氛围效果都有「不用」清单：纯色背景不用玻璃、小元素不做折射、需要用户处理的失败不发会消失的 Toast。",
+      "一切自动调整都带防抖带：阈值迟滞 ±0.05、采样去极值取平均、同排表面共用一个决定——不临界闪烁。",
+    ],
+  },
+  {
+    title: "无障碍是默认档，不是选配",
+    points: [
+      "prefers-reduced-motion 统一降级为约 150ms 纯淡化：保留状态变化，去掉位移、缩放、模糊与弹簧。",
+      "焦点守恒（关闭回触发元素）、live region 礼貌播报、触摸目标 ≥ 44px、键盘路径与指针路径同权。",
+      "延迟成对出现：加载态 300ms 后才显示、至少留 500ms；菜单打开 220ms、关闭宽限 360ms——快不是目的，不闪、不跳、不丢才是。",
+    ],
+  },
+];
+
+function SummarySection() {
+  return (
+    <Section no="总结" title="如何做好 UI · 全站共性">
+      <p className="max-w-3xl text-sm leading-7 text-muted-foreground">
+        二十二篇讲的是二十二个具体交互，合起来是同一套判断：动效不是装饰，是把「发生了什么、东西去哪了、接下来能做什么」讲清楚的语言。下面六条是全站反复出现的共性，也是上面每个演示共同遵守的规则。
+      </p>
+      <div className="mt-6 max-w-3xl">
+        <p className="text-sm font-medium">时长是一套刻度，不是一个数字</p>
+        <div className="mt-3 space-y-2">
+          {durationScale.map(d => (
+            <div key={d.label} className="flex items-center gap-4">
+              <span className="w-56 shrink-0 text-sm text-muted-foreground">{d.label}</span>
+              <span className="h-2 rounded-full bg-primary/70" style={{ width: `${d.w}%` }} aria-hidden />
+              <span className="text-sm tabular-nums">{d.range}</span>
+            </div>
+          ))}
+        </div>
+        <p className="crease-caption mt-3">退出恒短于进入；spring 与 overshoot 取普通时长约 1.5 倍；氛围动效是另一档——一次性的或环境性的，都不挡操作。</p>
+      </div>
+      <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {summaryCards.map(card => (
+          <div key={card.title} className="crease-glass rounded-2xl p-5">
+            <h3 className="text-sm font-medium">{card.title}</h3>
+            <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-muted-foreground">
+              {card.points.map(p => (
+                <li key={p.slice(0, 12)}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 rounded-2xl border border-dashed p-5">
+        <p className="text-sm font-medium">落地顺序（原文给工程侧的建议）</p>
+        <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-sm leading-6 text-muted-foreground">
+          <li>先落 token 层：缓动六条 + 时长三档 + 弹簧签名、同心圆角尺度、五层材质按钮。</li>
+          <li>再落行为组件：级联菜单、浮层选择、Toast / 通知双通道、加载四件套、空状态组件。</li>
+          <li>最后落展示型效果：滚动五式、书卡、拖拽涟漪、删除特效、光晕、液态玻璃、全息卡、环卡、气泡材质、ASCII / Dither——每个都以独立演示放进展示页，参数照原文原值。</li>
+        </ol>
+      </div>
+    </Section>
+  );
+}
+
 /* ————— page ————— */
 
 export function InteractionLabTemplate() {
@@ -1190,6 +1295,7 @@ export function InteractionLabTemplate() {
       <ChoiceSection />
       <RingSection />
       <EmptySection />
+      <SummarySection />
     </div>
   );
 }
