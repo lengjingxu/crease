@@ -306,8 +306,12 @@ function AsciiSection() {
   const asciiRef = useRef<HTMLCanvasElement>(null);
   const ditherRef = useRef<HTMLCanvasElement>(null);
   const palette = PALETTES.find(p => p.id === paletteId) ?? PALETTES[0];
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    let raf = 0;
+    let stopped = false;
+    let begin: () => void = () => {};
     const timer = window.setTimeout(() => {
       const W = 480;
       const H = 300;
@@ -325,12 +329,12 @@ function AsciiSection() {
         const dw = img.width * scale;
         const dh = img.height * scale;
         sctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
-        render();
+        begin();
       };
-      img.onerror = () => render();
+      img.onerror = () => begin();
       img.src = bridge;
 
-      const render = () => {
+      const render = (tSec: number) => {
         const data = sctx.getImageData(0, 0, W, H).data;
         const lum = (x: number, y: number) => {
           const i = (y * W + x) * 4;
@@ -346,6 +350,14 @@ function AsciiSection() {
         const low = samples[Math.floor(samples.length * 0.08)];
         const high = samples[Math.floor(samples.length * 0.92)];
         const norm = (x: number, y: number) => clamp((lum(x, y) - low) / Math.max(0.001, high - low), 0, 1);
+        // 原站的效果源是视频、逐帧重绘；这里让一束光在画面上缓慢游走，采样亮度随光移动，字符与颗粒逐帧流动
+        const lx = W * (0.5 + 0.36 * Math.sin(tSec * 0.45));
+        const ly = H * (0.46 + 0.32 * Math.sin(tSec * 0.62 + 1.3));
+        const lit = (x: number, y: number) => {
+          const dx = x - lx;
+          const dy = y - ly;
+          return clamp(norm(x, y) * (0.74 + 0.62 * Math.exp(-(dx * dx + dy * dy) / (2 * 155 * 155))), 0, 1);
+        };
         const s = strength / 100;
         const black = 0.22 * s;
         const white = 1 - 0.08 * s;
@@ -368,7 +380,7 @@ function AsciiSection() {
             for (let c = 0; c < cols; c++) {
               const cx = clamp(Math.floor((c + 0.5) * cell), 0, W - 1);
               const cy = clamp(Math.floor((r + 0.5) * rowH), 0, H - 1);
-              const tone = clamp((norm(cx, cy) - black) / Math.max(0.001, white - black), 0, 1);
+              const tone = clamp((lit(cx, cy) - black) / Math.max(0.001, white - black), 0, 1);
               const darkness = 1 - tone;
               if (darkness <= 0.02) continue;
               const ch = ASCII_CHARS[Math.round(darkness * 16)];
@@ -397,7 +409,7 @@ function AsciiSection() {
               const cx = clamp(Math.floor((c + 0.5) * block), 0, W - 1);
               const cy = clamp(Math.floor((r + 0.5) * block), 0, H - 1);
               const threshold = (BAYER[r % 4][c % 4] + 0.5) / 16;
-              const v = norm(cx, cy) + (threshold - 0.5) / levels;
+              const v = lit(cx, cy) + (threshold - 0.5) / levels;
               const q = clamp(Math.round(v * (levels - 1)) / (levels - 1), 0, 1);
               if (q >= 0.99) continue;
               dctx.fillStyle = rgbCss(paletteColor(palette.stops, q));
@@ -406,9 +418,30 @@ function AsciiSection() {
           }
         }
       };
+
+      begin = () => {
+        if (reduced) {
+          render(2.6);
+          return;
+        }
+        let last = 0;
+        const loop = (now: number) => {
+          if (stopped) return;
+          if (now - last >= 33) {
+            last = now;
+            render(now / 1000);
+          }
+          raf = requestAnimationFrame(loop);
+        };
+        raf = requestAnimationFrame(loop);
+      };
     }, 72);
-    return () => window.clearTimeout(timer);
-  }, [palette, asciiSize, ditherSize, strength]);
+    return () => {
+      stopped = true;
+      cancelAnimationFrame(raf);
+      window.clearTimeout(timer);
+    };
+  }, [palette, asciiSize, ditherSize, strength, reduced]);
 
   return (
     <Section no="003" title="ASCII 与抖动">
@@ -417,13 +450,13 @@ function AsciiSection() {
           <div className="ilab-fx-mask overflow-hidden rounded-2xl border bg-white">
             <canvas ref={asciiRef} className="block h-auto w-full" role="img" aria-label="桥图的 ASCII 字符画" />
           </div>
-          <figcaption className="crease-caption mt-2">ASCII · 17 级字符密度 + 色调曲线</figcaption>
+          <figcaption className="crease-caption mt-2">ASCII · 17 级字符密度 + 色调曲线 · 光斑游走逐帧重绘</figcaption>
         </figure>
         <figure>
           <div className="ilab-fx-mask overflow-hidden rounded-2xl border bg-white">
             <canvas ref={ditherRef} className="block h-auto w-full" role="img" aria-label="桥图的 Bayer 有序抖动版" />
           </div>
-          <figcaption className="crease-caption mt-2">Dither · Bayer 4×4 + {Math.max(2, Math.round(lerp(8, 2, strength / 100)))} 级量化</figcaption>
+          <figcaption className="crease-caption mt-2">Dither · Bayer 4×4 + {Math.max(2, Math.round(lerp(8, 2, strength / 100)))} 级量化 · 光斑游走逐帧重绘</figcaption>
         </figure>
       </div>
       <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -1238,6 +1271,43 @@ function SummarySection() {
           ))}
         </div>
         <p className="crease-caption mt-3">退出恒短于进入；spring 与 overshoot 取普通时长约 1.5 倍；氛围动效是另一档——一次性的或环境性的，都不挡操作。</p>
+      </div>
+      <div className="mt-8">
+        <p className="text-sm font-medium">二十二条逐条</p>
+        <ol className="mt-3 grid gap-x-10 gap-y-2 md:grid-cols-2">
+          {[
+            ["001", "按压按钮", "按下四件事同发：下沉 1px、渐变翻转、投影塌到 0 1px 1px、顶高光变内阴影"],
+            ["002", "级联菜单", "安全三角 + 三延迟：打开 220ms、关闭宽限 360ms、三角内停留上限 1.2s"],
+            ["003", "ASCII 与抖动", "Bayer 有序抖动与字符密度都按亮度重绘；效果太抢眼先升遮罩，不先降强度"],
+            ["004", "嵌套与连续圆角", "内圆角 = 外圆角 − 内边距，逐层往里算；大圆角用连续圆角"],
+            ["005", "拖拽让位", "涟漪按 0.7ⁿ 衰减、24ms 一档；Esc 与拖出都是原路弹回"],
+            ["006", "书本卡片", "绕左边缘开合、层差 28ms 一层；双阴影一对交叉淡化，不动模糊半径"],
+            ["007", "中英混排", "行长平衡、两端对齐、数字等宽、混排自动间距；截断要给看全文的路"],
+            ["008", "Wiki 布局", "锚点高亮跟随滚动位置；横幅顶栏滚出后浮回，目录两端箭头按需出现"],
+            ["009", "浮层选择", "触发方式决定控件：悬停 Tooltip、点击 Popover、危险动作用锚定的 Popconfirm"],
+            ["010", "液态玻璃", "只在多彩背景上用；染色密度 6–30% 一套参数全表面共用；小元素不用"],
+            ["011", "缓动曲线", "按角色分五条：进入、落位、离开、移位、回弹；默认 ease 禁用"],
+            ["012", "消息气泡", "同人连发只第一条带尾巴、组内 2px 组间 10px；材质四选一，全程统一"],
+            ["013", "冲击波光晕", "半径指数扩张、强度对数衰减；四色环加红蓝痕量色散边；输入框可展开"],
+            ["014", "删除卡片", "默认式淡出 + 坍缩；特效式燃 / 烟羽 / 碎块 / 剥离只选一种作产品签名"],
+            ["015", "界面连续性", "同一个元素长过去：新内容过半淡入、旧内容前 1/3 淡出、返回逆放"],
+            ["016", "Toast 与通知", "会消失的只报结果，需要处理的用通知卡；进度型原地变成结果"],
+            ["017", "加载状态", "按等待类型选：骨架屏、按钮转轮、乐观更新、进度卡，一次只用一种"],
+            ["018", "全息卡片", "箔面四种 finish 由光点驱动；深度靠层间位移；一屏最多一张"],
+            ["019", "滚动驱动卡片", "一切属性是进度 p 的函数、无吸附；堆叠 / 飞牌 / 画廊 / 展开 / 封面流一页一种"],
+            ["020", "选择控件", "按何时生效选：立刻生效分段与开关、先选后交 Select、带说明用单选竖排"],
+            ["021", "环形卡片", "弧长等距定位、曲率连续反转切换内外视、翻面成波、景深靠模糊与淡出"],
+            ["022", "空状态", "先分种类——首次、无结果、失败、无权限、全部处理完——再按空间定尺寸"],
+          ].map(([no, name, rule]) => (
+            <li key={no} className="flex gap-3 text-sm leading-6">
+              <span className="shrink-0 font-medium tabular-nums text-muted-foreground">{no}</span>
+              <span>
+                <span className="font-medium">{name}</span>
+                <span className="text-muted-foreground"> — {rule}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
       </div>
       <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {summaryCards.map(card => (
