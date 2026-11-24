@@ -8,6 +8,7 @@ import "@fontsource/outfit/latin-400.css";
 import "@fontsource/outfit/latin-500.css";
 import "@fontsource/syne/latin-600.css";
 import "../src/theme/crease.css";
+import { ToastProvider, useToast } from "@/components/kit/toast";
 
 function ThemeExample() {
   const [dark, setDark] = useState(false);
@@ -15,7 +16,7 @@ function ThemeExample() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [projects, setProjects] = useState(["城市空间研究", "产品体验升级"]);
-  const [notice, setNotice] = useState("");
+  const { toast } = useToast();
   return (
     <main className="crease-canvas min-h-dvh px-4 py-6 sm:p-10">
       <div className="mx-auto max-w-6xl space-y-8">
@@ -55,7 +56,7 @@ function ThemeExample() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm text-muted-foreground" role="status">{notice || "示例数据。新建内容仅保存在本次页面中。"}</p>
+            <p className="mt-6 text-sm text-muted-foreground" role="status">{"示例数据。新建内容仅保存在本次页面中。"}</p>
           </section>
           <aside className="crease-ink flex flex-col justify-between gap-8 rounded-2xl p-6 sm:p-8">
             <div><p className="text-sm text-muted-foreground">本周专注时间</p><p className="mt-4 text-5xl tracking-tight tabular-nums">24.5 <span className="text-base text-muted-foreground">小时</span></p></div>
@@ -72,7 +73,7 @@ function ThemeExample() {
             if (!name.trim()) { setError("请输入项目名称。"); return; }
             if (projects.includes(name.trim())) { setError("这个项目名称已存在。"); return; }
             setProjects([...projects, name.trim()]);
-            setNotice("已创建项目：" + name.trim());
+            toast("已创建项目：" + name.trim());
             setName(""); setError(""); setOpen(false);
           }}>
             <div className="space-y-2"><label htmlFor="project-name" className="text-sm font-medium">项目名称</label><Input id="project-name" value={name} onChange={event => {setName(event.target.value); setError("");}} maxLength={40} aria-invalid={!!error} aria-describedby={error ? "name-error" : undefined} className="min-h-11" placeholder="例如：品牌官网改版" />{error && <p id="name-error" role="alert" className="text-sm text-destructive">{error}</p>}</div>
@@ -83,4 +84,4 @@ function ThemeExample() {
     </main>
   );
 }
-createRoot(document.getElementById("root")!).render(<ThemeExample />);
+createRoot(document.getElementById("root")!).render(<ToastProvider><ThemeExample /></ToastProvider>);

@@ -409,6 +409,16 @@ label.space-y-2 > span:first-child { display:block; }
 @keyframes crease-toast-out { to { opacity: 0; transform: translateY(-6px) scale(.97); } }
 .crease-notify-card { animation: crease-notify-in 560ms var(--ease-settle) both; }
 .crease-notify-card[data-leaving="true"] { animation: crease-toast-out 220ms var(--ease-exit) forwards; }
+
+/* Chat bubbles (012): spring-like entrance, transform + opacity only. */
+.crease-bubble { animation: crease-bubble-in 460ms cubic-bezier(.22,1,.36,1) both; }
+@keyframes crease-bubble-in { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+
+/* Kanban drag (005): lifted card + target column tint. */
+[data-dragging="true"] { cursor: grabbing; background: var(--background); box-shadow: 0 24px 44px -18px rgb(20 40 70 / 0.4); }
+[data-dragging="true"].crease-ink { background: #101316; }
+[data-drop="true"] > div:first-child { border-top-color: var(--primary); }
+
 @keyframes crease-notify-in { from { opacity: 0; transform: translateY(-14px) scale(.95); } }
 
 @media (prefers-reduced-motion: reduce) {
@@ -416,4 +426,5 @@ label.space-y-2 > span:first-child { display:block; }
   .crease-pressable, .crease-pressable:hover, .crease-pressable:active { transform: none; }
   .crease-shimmer::after { animation: none; }
   .crease-exit { animation-duration: 150ms; }
+  .crease-bubble { animation-duration: 150ms; }
 }

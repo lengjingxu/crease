@@ -9,8 +9,9 @@ import "./styles.css";
 import "./theme/studio.css";
 import "./theme/references.css";
 import { Studio } from "./components/studio/studio";
+import { ToastProvider } from "./components/kit/toast";
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Studio />
+    <ToastProvider><Studio /></ToastProvider>
   </React.StrictMode>,
 );
