@@ -7,7 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "export:library": "vite build --config vite.single.config.ts"
+    "export:library": "vite build --config vite.single.config.ts",
+    "build:readroom": "vite build --config vite.readroom.config.ts && READROOM_PAGE=examples/library.html vite build --config vite.readroom.config.ts && READROOM_PAGE=examples/theme.html vite build --config vite.readroom.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-sc": "^5.3.1",

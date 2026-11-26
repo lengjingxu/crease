@@ -4,6 +4,7 @@ import {
   PeopleReference,
 } from "./references";
 import { useEffect, useState, type ReactNode } from "react";
+import { routeFromHash } from "@/lib/hash-route";
 import {
   ArrowUpRight,
   CircleHelp,
@@ -59,10 +60,10 @@ function Kicker({ children }: { children: ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
 export function Studio() {
-  const [page, setPage] = useState(() => location.hash.slice(1) || "finance");
+  const [page, setPage] = useState(() => routeFromHash("finance"));
   const [about, setAbout] = useState(false);
   useEffect(() => {
-    const update = () => setPage(location.hash.slice(1) || "finance");
+    const update = () => setPage(routeFromHash("finance"));
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
   }, []);
@@ -197,7 +198,7 @@ function DesignSystem() {
         title="清晰，自成风格"
         description="白是场域，黑是重量，红是方向。让材质服务于信息。"
       >
-        <Button asChild variant="outline"><a href="/examples/library.html">组件与模板</a></Button>
+        <Button asChild variant="outline"><a href="./examples/library.html">组件与模板</a></Button>
         <Button variant="outline" onClick={copy}>
           {copied ? <Check size={15} /> : <Copy size={15} />}{" "}
           {copied ? "已复制完整主题" : "复制完整主题"}

@@ -51,7 +51,7 @@ React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 
 
 ## 来源与素材
 
-原图保存在 design/references/，来自用户指定的公开 Dribbble 稿件，仅作设计研究。HR 人像与 TripAI 风车/缩略图从这些图中裁切提取，保存在 public/reference-details/；原稿、照片与品牌的权利归各自权利人，不将其声明为原创或可自由商用素材。新页面中的示意地图、图表与 CSS 材质由代码绘制。
+原图保存在 design/references/，来自用户指定的公开 Dribbble 稿件，仅作设计研究。HR 人像与 TripAI 风车/缩略图从这些图中裁切提取，保存在 src/assets/reference-details/，由组件直接导入，托管在子路径下也能正确解析；原稿、照片与品牌的权利归各自权利人，不将其声明为原创或可自由商用素材。新页面中的示意地图、图表与 CSS 材质由代码绘制。
 
 原主题的视觉方法来自 Mirror’s Edge，而非游戏素材：白色环境、必要体块、红色引导。原主题标志和 public/sources/red-line.svg 保留；没有引入游戏截图、角色或官方宣传图。
 
@@ -64,6 +64,14 @@ React 19 + TypeScript + Vite + Tailwind CSS v4。Button、Input、Dialog 使用 
 ~~~sh
 npm run export:library
 ~~~
+
+## 发布到报匣（快应用）
+
+~~~sh
+npm run build:readroom
+~~~
+
+生成 dist-readroom/：首页、examples/library.html 与 examples/theme.html 各为一个自包含 HTML（脚本、样式、字体、图片全部内联，打开后不再加载分包），把目录内容打成 zip 即可发布为快应用。
 
 生成自包含预览 output/portable/examples/library.html，可单文件转发；样式、脚本、字体、SVG 全部内联。业务为本地演示，AI 不连接外部模型。源码在 src/components/kit/ 与 src/templates/，复制方式见资产说明。
 
