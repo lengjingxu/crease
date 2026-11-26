@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToastProvider } from "@/components/kit/toast";
 import { WorkspaceShell } from "@/components/kit/workspace-shell";
+import { routeFromHash } from "@/lib/hash-route";
 import { AdminTemplate } from "@/templates/admin";
 import { ContentTemplate } from "@/templates/content";
 import { AssistantTemplate } from "@/templates/assistant";
@@ -67,8 +68,8 @@ const pages=[
 ];
 const sources:Record<string,string>={...Object.fromEntries(pages.map(p=>[p.id,p.source])),"工作空间布局":shellSource,"滚动视差":scrollDepthSource,"数据表格":tableSource,"数据卡片":metricSource,"文章与图片卡片":cardSource,"告警与等待":feedbackSource,"AI 对话组件":chatSource,"动态形象组件":companionSource,"动态形象样式":companionCss,"材质光影实验":materialSource,"交互实验室样式":interactionLabCss,"Toast 与通知":toastSource,"滚动入场":revealSource,"对比柱图":barSource,"场景标题":headingSource,"刻度进度环":ringSource,"完整主题":themeSource};
 function Library(){
- const [active,setActive]=useState(location.hash.slice(1)||"components"),[dark,setDark]=useState(false),[search,setSearch]=useState(false),[query,setQuery]=useState(""),[source,setSource]=useState(false),[sourceKey,setSourceKey]=useState("admin"),[copied,setCopied]=useState(false),[copyError,setCopyError]=useState("");
- useEffect(()=>{const change=()=>setActive(location.hash.slice(1)||"components");addEventListener("hashchange",change);return()=>removeEventListener("hashchange",change);},[]);
+ const [active,setActive]=useState(()=>routeFromHash("components")),[dark,setDark]=useState(false),[search,setSearch]=useState(false),[query,setQuery]=useState(""),[source,setSource]=useState(false),[sourceKey,setSourceKey]=useState("admin"),[copied,setCopied]=useState(false),[copyError,setCopyError]=useState("");
+ useEffect(()=>{const change=()=>setActive(routeFromHash("components"));addEventListener("hashchange",change);return()=>removeEventListener("hashchange",change);},[]);
  const page=pages.find(p=>p.id===active)||pages[0];const Component=page.Component;
  const results=pages.filter(p=>(p.label+p.keywords).toLowerCase().includes(query.toLowerCase()));
  function navigate(id:string){location.hash=id;setSearch(false);setQuery("");window.scrollTo({top:0,behavior:"instant"});}

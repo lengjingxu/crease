@@ -1,5 +1,6 @@
 node_modules/
 dist/
+dist-readroom/
 *.tsbuildinfo
 .playwright/
 test-results/

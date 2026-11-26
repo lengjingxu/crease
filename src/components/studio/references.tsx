@@ -45,6 +45,12 @@ import {
   Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hrPortrait from "@/assets/reference-details/hr-portrait.webp";
+import santoriniStudy from "@/assets/reference-details/santorini-study.webp";
+import tripThumb0 from "@/assets/reference-details/trip-thumb-0.webp";
+import tripThumb1 from "@/assets/reference-details/trip-thumb-1.webp";
+import tripThumb2 from "@/assets/reference-details/trip-thumb-2.webp";
+import tripThumb3 from "@/assets/reference-details/trip-thumb-3.webp";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -193,6 +199,8 @@ function RefNote({ name, author }: { name: string; author: string }) {
     </div>
   );
 }
+
+const tripThumbs = [tripThumb0, tripThumb1, tripThumb2, tripThumb3];
 
 export function FinanceReference() {
   const [popup, setPopup] = useState<string | null>(null);
@@ -847,7 +855,7 @@ export function PeopleReference() {
         <div className="hr-grid">
           <section className="hr-portrait">
             <img
-              src="/reference-details/hr-portrait.webp"
+              src={hrPortrait}
               alt="参考稿中的团队成员肖像"
             />
             <div>
@@ -1341,7 +1349,7 @@ export function TravelReference() {
           <section className="trip-hero">
             <div className="trip-scene">
               <img
-                src="/reference-details/santorini-study.webp"
+                src={santoriniStudy}
                 alt="圣托里尼白色风车，提取自 TripAI 参考静帧"
               />
             </div>
@@ -1353,7 +1361,7 @@ export function TravelReference() {
                 className="active"
               >
                 <img
-                  src="/reference-details/trip-thumb-0.webp"
+                  src={tripThumb0}
                   alt="目的地缩略图"
                 />
               </button>
@@ -1364,7 +1372,7 @@ export function TravelReference() {
                   onClick={() => setPopup("目的地图集")}
                 >
                   <img
-                    src={"/reference-details/trip-thumb-" + n + ".webp"}
+                    src={tripThumbs[n]}
                     alt={"目的地缩略图 " + n}
                   />
                 </button>
